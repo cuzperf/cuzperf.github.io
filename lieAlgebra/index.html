@@ -1,0 +1,796 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cuzperf">
+  <meta name="keywords" content="math, cpp, python, sagemath">
+  
+    <meta name="description" content="近期在整理 Lie Algebra 课的笔记，还是很喜欢这门课的，主要是本科时候矩阵玩的特别 6，然后 Lie Algebra 可以认为是矩阵的推广版本。里面的证明技巧性相当强。我之所以喜欢数学很大程度与数学技巧有关。但是我的导师说，这些虽然很有技巧，但是你花时间都是可以处理的，会技巧没什么了不起，脑袋稍微好一点就能做这种事，长期技巧的训练其实意义并不大，应该更关注数学内部的东西，具体说就是一个代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李代数">
+<meta property="og:url" content="http://cuzperf.cn/lieAlgebra/index.html">
+<meta property="og:site_name" content="cuzperf">
+<meta property="og:description" content="近期在整理 Lie Algebra 课的笔记，还是很喜欢这门课的，主要是本科时候矩阵玩的特别 6，然后 Lie Algebra 可以认为是矩阵的推广版本。里面的证明技巧性相当强。我之所以喜欢数学很大程度与数学技巧有关。但是我的导师说，这些虽然很有技巧，但是你花时间都是可以处理的，会技巧没什么了不起，脑袋稍微好一点就能做这种事，长期技巧的训练其实意义并不大，应该更关注数学内部的东西，具体说就是一个代">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-04-08T11:16:21.000Z">
+<meta property="article:modified_time" content="2022-11-03T18:36:49.508Z">
+<meta property="article:author" content="cuzperf">
+<meta property="article:tag" content="math">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>李代数 - cuzperf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cuzperf.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>cuzperf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cppTemplate/">
+                <i class="iconfont icon-book"></i>
+                cpp
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/readme/">
+                <i class="iconfont icon-notebook"></i>
+                README
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webTools/">
+                <i class="iconfont icon-briefcase"></i>
+                网页工具
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="李代数"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2016-04-08 19:16" pubdate>
+          2016年4月8日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          3.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">李代数</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    最后更新于：2022年11月4日 凌晨
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <p>近期在整理 Lie Algebra 课的笔记，还是很喜欢这门课的，主要是本科时候矩阵玩的特别 6，然后 Lie Algebra 可以认为是矩阵的推广版本。里面的证明技巧性相当强。我之所以喜欢数学很大程度与数学技巧有关。但是我的导师说，这些虽然很有技巧，但是你花时间都是可以处理的，会技巧没什么了不起，脑袋稍微好一点就能做这种事，长期技巧的训练其实意义并不大，应该更关注数学内部的东西，具体说就是一个代数对象的结构，分类，不变量，对象之间的同构。一个概念有哪些等价形式，与其它概念之间的关系，搞清楚这些更为重要，它们的证明只要大致知道怎么过来的就行。我们并不要把证明的细节放在心中，因为我们已经经过了多年的训练，相信我们通过大致步骤就能给出详细的证明，只是花的时间多少罢了。当然初学一个东西，去抠它的细节是无可厚非的。</p>
+<blockquote>
+<p>以上纯属废话 0.0</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>交换环 $K$ 上的模 $L$，以及一个运算 $L \times L \to L,(x,y) \mapsto [x,y]$ 称为 $x,y$ 的 Lie 括号，或交换子，并称 $L$ 是 $K$ 上的 Lie Algebra，如果满足如下公理。<br>L1. $[\cdot,\cdot]$ 是双线性的；<br>L2. $[x,x]=0$ 对任意 $x \in L$ 成立；<br>L3. $[x,[y,z]]+[y,[z,x]]+[z,[x,y]]=0$ (Jacobi 恒等式)</p>
+<p>若 $[L,L]=0$ 则上面结论显然成立，此时称为 Abelian Lie Algebra。</p>
+<blockquote>
+<p>我们通常并不考虑 Abelian Lie Algebra。并且要求交换环 $K$ 是域 $F$，很多时候还要求 $F$ 是特征为 0 的代数闭域，另外我们大多考虑 $L$ 是 $F$ 上的有限维线性空间。</p>
+</blockquote>
+<p>子，理想，商，同态，表示等一系列的概念和其它代数结构几乎一致。可以划入范畴中。另外单，半单，Radical 等这些概念也于环里面的类似，就不赘述了。</p>
+<h2 id="样板-Lie-Algebra"><a href="#样板-Lie-Algebra" class="headerlink" title="样板 Lie Algebra"></a>样板 Lie Algebra</h2><p>若 $V$ 是 $F$ 上有限维线性空间，$End V$ 表示 $V$ 到 $V$ 的线性变换全体按照元素的复合构成了 $F$ 上的线性空间且 $\dim End V = (\dim V)^2$。也构成了 $End V$ 是一个结合 $F$-代数。而任何结合代数都可以诱导一个 Lie 代数： $[x,y]=xy - yx$ 。为了强调 Lie 结构，我们用 $\mathbb{gl}(V)$ 代替 $End V$，称为 general linear algebra。它在 Lie 代数中充当的角色很类似于置换群在群中的角色。我们知道半单 Lie 代数同构于 $\mathbb{gl}(V)$ 的一个子 Lie 代数。</p>
+<h2 id="导子和伴随表示"><a href="#导子和伴随表示" class="headerlink" title="导子和伴随表示"></a>导子和伴随表示</h2><p>我们称一个 $F-$代数 $A$（可以非结合）也可以借助导子(derivation)诱导一个 Lie 代数，称一个导子是指一个线性映射 $\delta: A \to A$ 满足 $\delta(ab)=\delta(a)b+a\delta(b)$。易知导子 $Der A$ 全体构成了 $End A$ 的一个子空间，由于 $[\delta,\delta’] \in Der A$，因此 $Der A$ 构成了 $\mathbb{gl}(V)$的一个子 Lie 代数。<br>由于 Lie 代数 $L$ 也是 $F$-代数,因此我们也可以定义 $Der L$。这里的导子本质上就是 Jacobi 恒等式的变形。<br>定义 $ad_x: L \to L,y \mapsto [x,y]$，实际上 $ad_x \in Der L$。$L \to Der L,x \mapsto ad_x$ 称为 $L$ 的伴随表示(adiont representation)。</p>
+<h2 id="可解和幂零"><a href="#可解和幂零" class="headerlink" title="可解和幂零"></a>可解和幂零</h2><p>对于给定 Lie 代数 $L$，我们有理想降链<br>$L^{(0)} = L,L^{(1)}=[L^{(0)},L^{(0)}],\cdots,L^{(i)}=[L^{(i-1)},L^{(i-1)}],\cdots$。若存在 $n$ 使得 $L^{(n)} = 0$ 则称 $L$ 可解(slovable)。</p>
+<ol>
+<li>若$L$ 可解，$L$ 的子代数和同态像可解</li>
+<li>$I$ 是 $L$ 的可解理想，若 $L/I$ 可解，则 $L$ 可解。</li>
+<li>$I,J$ 是 $J$ 的可解理想，则 $I+J$ 也是。</li>
+</ol>
+<p>由上述性质可知，$L$ 有唯一的极大可解理想。即为 $Rad L$,若 $Rad L =0$ 则称之为<strong>半单</strong>的，等价于 $L$ 无非零 Abelian 理想(充分性显然，必要性是因为 $Rad L$ 可解，考虑最后一个非 0 项必然是 Abelian 理想矛盾)。另外 我们称 $x \in End V$ 半单，若 $x$ 的极小多项式无重根。</p>
+<p>对于给定 Lie 代数 $L$，我们有理想降链<br>$L^0 = L,L^1=[L, L^0],\cdots,L^i=[L, L^{i-1}],\cdots$。若存在 $n$ 使得 $L^{n} = 0$ 则称 $L$ 幂零(nilpotent)。</p>
+<ol>
+<li>若$L$ 幂零，$L$ 的子代数和同态像幂零。</li>
+<li>若 $L/Z(L)$ 幂零。则 $L$ 幂零。</li>
+<li>若 $L$ 幂零且非 0，则 $Z(L) \neq 0$。</li>
+</ol>
+<p>显然由于 $L^{(i)} \subset L^i$ 因此幂零一定可解，但是反之则不尽然，例如 $\mathbb{gl}(V)$ 中对应的上三角矩阵全体构成的 Lie 代数。由 Lie 定理的推论知：</p>
+<blockquote>
+<p>$L$ 可解的充要条件是 $[L,L]$ 幂零。</p>
+</blockquote>
+<h3 id="ad-nilpotent"><a href="#ad-nilpotent" class="headerlink" title="ad-nilpotent"></a>ad-nilpotent</h3><p>$L$ 是一个 Lie 代数，$x \in L$, 称 $x$ ad-nilpotent 是指 $ad_x$ 幂零。<br>易知若 $x$ 幂零，则 $ad_x$ 幂零，但是反之不尽然。然而我们有 <strong>Engel 定理</strong>：</p>
+<h3 id="L-幂零当且仅当-ad-L-幂零"><a href="#L-幂零当且仅当-ad-L-幂零" class="headerlink" title="$L$ 幂零当且仅当 $ad L$ 幂零"></a>$L$ 幂零当且仅当 $ad L$ 幂零</h3><h2 id="一些重要结果"><a href="#一些重要结果" class="headerlink" title="一些重要结果"></a>一些重要结果</h2><p>这里罗列一些定理实际上就是搞清楚 Lie 代数中的一些问题和一些好的性质。</p>
+<p><strong>THM1</strong>. 设 $L$ 是 $\mathbb{gl}(V)$ 的子代数($L$ 中的元素可理解为矩阵)，$V$ 是有限维的，若 $L$ 中元素都幂零，则存在 $v \in V$ 使得 $L(v) = 0$.<br>上面结果是讲，$L$ 中元素都幂零，则 $L$ 有公共的 $0$ 特征向量。证明是很有技巧性的。构造一个 codemension 为 1 的子代数，并证明它是 $L$ 不变子空间。然后数学归纳法完成证明。上面定理还说明我们可以取定一组基使 $L$ 同时严格上三角。</p>
+<p><strong>THM2</strong>. 若 $L$ 幂零，$K$ 是 $L$ 的非零理想,则 $K \cap Z(L) \neq 0$</p>
+<p><strong>THM3</strong>. 设 $L$ 是 $\mathbb{gl}(V)$ 可解子代数，$V$ 是有限维的，则存在 $L$ 存在公共特征向量。</p>
+<p>上面定理还说明我们可以取定一组基使得 $L$ 同时上三角。</p>
+<p><strong>THM4</strong>. 若 $x \in EndV$，则存在唯一的分解 $x = x_s+x_n$，其中 $x_s$ 是半单的， $x_n$ 是幂零的，且 $x_s,x_n$ 都能表示成 $x$ 的无常数项的多项式。将其称之为 Jordan-Chevally 分解。</p>
+<p><strong>THM5</strong>. 若 $x$ 半单，则 $ad_x$ 半单。若 $x=x_s+x_n$ 是 Jordan-Chevally 分解，则 $ad_x = ad_{x_s} + ad_{x_n}$  也是。$Der A$ 包含其元素的 半单部分和幂零部分。</p>
+<p><strong>THM6</strong>. $A \subset B \subset End V $，令 $M = \lbrace x \in \mathbb{gl}(V) \mid [x,B] \subset A\rbrace$。若 $x \in M$ 满足，$Tr(xy)=0$ 对任意 $y\in M$ 成立，则 $x$ 幂零。</p>
+<p><strong>THM7</strong> $L \subset \mathbb{gl}(V)$，$V$ 是有限维的, 则 对任意 $x \in [L,L],\;y \in L$ 有 $Tr(xy)=0$ 当且仅当 $L$ 可解。</p>
+<p><strong>THM8</strong> 设 $L$ 是 Lie 代数，对任意 $x \in [L,L],\;y \in L$ 有 $Tr(ad_x ad_y)=0$ 则 $L$ 可解。</p>
+<p><strong>THM9</strong> 若 $L$ 是半单的，则 $L$ 可唯一写成单子理想的直和且 $L=[L,L],Z(L)=0$ 且 $L$ 的理想和同态像都是半单的。</p>
+<p><strong>THM10</strong> $ad L$ 是 $Der L$ 的理想，且若 $L$ 是半单的，则 $ad L = Der L$。</p>
+<h2 id="To-be-continue"><a href="#To-be-continue" class="headerlink" title="To be continue"></a>To be continue</h2>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/math/">#math</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/zariskiTopologyOfRing/" title="环的 Zariski 拓扑(素谱)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">环的 Zariski 拓扑(素谱)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/jordanDecompositionOfMatrix/" title="矩阵的 Jordan 分解">
+                        <span class="hidden-mobile">矩阵的 Jordan 分解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'cuzperf/cuzperf.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

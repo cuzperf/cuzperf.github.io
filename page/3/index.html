@@ -65,7 +65,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"cuzperf.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"cuzperf.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -74,6 +74,8 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
 
   
 <meta name="generator" content="Hexo 5.4.1"></head>
@@ -109,7 +111,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -121,7 +123,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -133,7 +135,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -145,7 +147,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/cppTemplate/">
                 <i class="iconfont icon-book"></i>
-                cpp
+                <span>cpp</span>
               </a>
             </li>
           
@@ -157,7 +159,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/readme/">
                 <i class="iconfont icon-notebook"></i>
-                README
+                <span>README</span>
               </a>
             </li>
           
@@ -169,7 +171,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/webTools/">
                 <i class="iconfont icon-briefcase"></i>
-                网页工具
+                <span>网页工具</span>
               </a>
             </li>
           
@@ -177,15 +179,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -498,7 +501,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/computationOfPiX/" target="_self">
         <div>
-          $\pi(x)$ 表示不超过 $x$ 的素数个数。容易看出可以在 $O(N)$ 时间复杂度，$O(N)$ 空间复杂度离线预处理求出小于 $N$ 的素数全体。但是如果 $N&#x3D;10^{14}$ 或者更大，这种做法必然是不现实的。因此下面给出高效的求解方法… 理论基础: 参考潘承洞《数论基础》以及论文包.zip
+          $\pi(x)$ 表示不超过 $x$ 的素数个数。容易看出可以在 $O(N)$ 时间复杂度，$O(N)$ 空间复杂度离线预处理求出小于 $N$ 的素数全体。但是如果 $N=10^{14}$ 或者更大，这种做法必然是不现实的。因此下面给出高效的求解方法… 理论基础: 参考潘承洞《数论基础》以及论文包.zip
         </div>
       </a>
 
@@ -622,7 +625,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/jordanDecompositionOfMatrix/" target="_self">
         <div>
-          最近在整理李代数（Lie Algebra） 内容时，里面提到了 Jordan 分解，这里就详细介绍并证明几个相关结果。  若矩阵 $A,B$ 可交换，则它们有公共特征向量。 若矩阵 $A,B$ 可以对角化，则它们可以同时对角化，当且仅当 $A,B$ 交换 每一个矩阵 $A$ 都可以唯一分解成 $A&#x3D;B+C$, 其中 $B$ 可对角化（半单部分），$C$ 幂零。且 $B,C$ 都可以写成 $A$ 的
+          最近在整理李代数（Lie Algebra） 内容时，里面提到了 Jordan 分解，这里就详细介绍并证明几个相关结果。  若矩阵 $A,B$ 可交换，则它们有公共特征向量。 若矩阵 $A,B$ 可以对角化，则它们可以同时对角化，当且仅当 $A,B$ 交换 每一个矩阵 $A$ 都可以唯一分解成 $A=B+C$, 其中 $B$ 可对角化（半单部分），$C$ 幂零。且 $B,C$ 都可以写成 $A$ 的
         </div>
       </a>
 
@@ -781,8 +784,6 @@
       
     })(window, document);
   </script>
-
-
 
 
 

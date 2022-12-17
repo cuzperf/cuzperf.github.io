@@ -18,15 +18,15 @@
   <meta name="author" content="cuzperf">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="2021.07.07 ~ 2022.10.24：我永远都爱 Agora。感谢 Agora 的收留，让我从一次失败的经历中走出来，转行 IT。  以下所言如何验证？git 那些操作可否细说？有啥高端用法没有，hook 是怎么 hook 的 收获 熟悉掌握 git 使用 消除了很多对 C++ 的误解，能写多线程的程序，懂一些设计模式，保证代码质量的方式（写可测的代码，利用现代编译器的特性优化代码）">
+    <meta name="description" content="2021.07.07 ~ 2022.10.24：我永远都爱 Agora感谢 Agora 的收留，让我从一次失败的经历中走出来，转行 IT  以下所言如何验证？git 那些操作可否细说？有啥高端用法没有，hook 是怎么 hook 的 收获 熟悉掌握 git 的基本操作 消除了很多对 C++ 的误解，能写多线程的程序，懂一些设计模式，保证代码质量的方式（写可测的代码，利用现代编译器的特性优化代码）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Agora 工作总结">
 <meta property="og:url" content="http://cuzperf.cn/workInAgora/index.html">
 <meta property="og:site_name" content="cuzperf">
-<meta property="og:description" content="2021.07.07 ~ 2022.10.24：我永远都爱 Agora。感谢 Agora 的收留，让我从一次失败的经历中走出来，转行 IT。  以下所言如何验证？git 那些操作可否细说？有啥高端用法没有，hook 是怎么 hook 的 收获 熟悉掌握 git 使用 消除了很多对 C++ 的误解，能写多线程的程序，懂一些设计模式，保证代码质量的方式（写可测的代码，利用现代编译器的特性优化代码）">
+<meta property="og:description" content="2021.07.07 ~ 2022.10.24：我永远都爱 Agora感谢 Agora 的收留，让我从一次失败的经历中走出来，转行 IT  以下所言如何验证？git 那些操作可否细说？有啥高端用法没有，hook 是怎么 hook 的 收获 熟悉掌握 git 的基本操作 消除了很多对 C++ 的误解，能写多线程的程序，懂一些设计模式，保证代码质量的方式（写可测的代码，利用现代编译器的特性优化代码）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-03T17:39:53.000Z">
-<meta property="article:modified_time" content="2022-11-07T13:34:28.803Z">
+<meta property="article:modified_time" content="2022-12-17T13:18:25.279Z">
 <meta property="article:author" content="cuzperf">
 <meta property="article:tag" content="math, cpp, python, sagemath">
 <meta name="twitter:card" content="summary_large_image">
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"cuzperf.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"cuzperf.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -82,6 +82,8 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
 
   
 <meta name="generator" content="Hexo 5.4.1"></head>
@@ -117,7 +119,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -129,7 +131,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -141,7 +143,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -153,7 +155,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/cppTemplate/">
                 <i class="iconfont icon-book"></i>
-                cpp
+                <span>cpp</span>
               </a>
             </li>
           
@@ -165,7 +167,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/readme/">
                 <i class="iconfont icon-notebook"></i>
-                README
+                <span>README</span>
               </a>
             </li>
           
@@ -177,7 +179,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/webTools/">
                 <i class="iconfont icon-briefcase"></i>
-                网页工具
+                <span>网页工具</span>
               </a>
             </li>
           
@@ -185,15 +187,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -234,7 +237,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          3.6k 字
+          5k 字
         
       </span>
     
@@ -246,7 +249,7 @@
         
         
           <!-- compatible with older versions-->
-          31 分钟
+          42 分钟
         
       </span>
     
@@ -290,19 +293,20 @@
                 
                   
                     <!-- compatible with older versions-->
-                    最后更新于：2022年11月7日 晚上
+                    最后更新于：2022年12月17日 晚上
                   
                 
               </p>
             
-            <div class="markdown-body">
-              
-              <blockquote>
-<p>2021.07.07 ~ 2022.10.24：我永远都爱 Agora。感谢 Agora 的收留，让我从一次失败的经历中走出来，转行 IT。</p>
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>2021.07.07 ~ 2022.10.24：我永远都爱 Agora<br>感谢 Agora 的收留，让我从一次失败的经历中走出来，转行 IT</p>
 </blockquote>
 <p>以下所言如何验证？git 那些操作可否细说？有啥高端用法没有，hook 是怎么 hook 的</p>
 <h2 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h2><ul>
-<li>熟悉掌握 git 使用</li>
+<li>熟悉掌握 git 的基本操作</li>
 <li>消除了很多对 C++ 的误解，能写多线程的程序，懂一些设计模式，保证代码质量的方式（写可测的代码，利用现代编译器的特性优化代码）</li>
 <li>了解 gn 编译系统，开始从使用者变成系统构建者</li>
 <li>Xcode, VS, VScode, lldb, gdb 上调试 C++ 代码</li>
@@ -341,37 +345,136 @@
 <li>要分清工作和在当前工作单位工作</li>
 <li>keep learning 才能真正的快乐</li>
 </ul>
-<h2 id="clang-开启-Wformat-后的-log-打印规范"><a href="#clang-开启-Wformat-后的-log-打印规范" class="headerlink" title="clang 开启 Wformat 后的 log 打印规范"></a>clang 开启 Wformat 后的 log 打印规范</h2><p>类型 格式<br>long long lld<br>unsigned long long llu<br>size_t zu<br>uint64_t PRIu64<br>int64_t PRId64<br>intptr_t PRIxPTR<br>uintptr_t PRIuPTR<br>其他任意指针类型 p<br>enum（建议打印时用转一下） static_cast<uint32_t> u</p>
+<h2 id="clang-开启-Wformat-后的-log-打印规范"><a href="#clang-开启-Wformat-后的-log-打印规范" class="headerlink" title="clang 开启 Wformat 后的 log 打印规范"></a>clang 开启 Wformat 后的 log 打印规范</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>long long</td>
+<td>lld</td>
+</tr>
+<tr>
+<td>unsigned long long</td>
+<td>llu</td>
+</tr>
+<tr>
+<td>size_t</td>
+<td>zu</td>
+</tr>
+<tr>
+<td>uint64_t</td>
+<td>PRIu64</td>
+</tr>
+<tr>
+<td>int64_t</td>
+<td>PRId64</td>
+</tr>
+<tr>
+<td>intptr_t</td>
+<td>PRIxPTR</td>
+</tr>
+<tr>
+<td>uintptr_t</td>
+<td>PRIuPTR</td>
+</tr>
+<tr>
+<td>其他任意指针类型</td>
+<td>p</td>
+</tr>
+<tr>
+<td>enum（建议打印时用转一下）</td>
+<td>static_cast<uint32_t> u</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>不知道的时候可以强转一下（总结一下各种转化）</p>
-<p>由于 <code>-Wformat-signedness</code> 是 gcc 独有的，而我们使用的是 msvc 和 clang，所以目前 format 不区分 signed 和 unsigned，即PRIu<br>64 和 PRId64 这种混淆使用是无法检测出来的。<br>PRIu64 等这些宏都是 string-literal 即字符串常量（所以可以编译期拼接），定义在 inttypes.h 中，然后各个平台的定义会有一些出<br>入，从而做到跨平台。agora_log_i.h 已经#include<cinttypes> ，所以不需要额外包含头文件<br>C++11requiresaspacebetweenliteralandidentifier[-Wreserved-user-defined-literal]，即上述宏旁边有字符串的话，需要加空格<br>其实对于 uint32_t，uint16_t, uint8_t 这种也应该分别使用PRIu32, PRIu16, PRIu8，但是考虑各个平台的定义都是一样的，并且由于<br>整形提升，所以用 <code>%u</code> 也没有啥问题</p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6893436635476819982">https://juejin.cn/post/6893436635476819982</a></p>
+<p>由于 <code>-Wformat-signedness</code> 是 gcc 独有的，而我们使用的是 msvc 和 clang，所以目前 format 不区分 signed 和 unsigned，即PRIu64 和 PRId64 这种混淆使用是无法检测出来的。PRIu64 等这些宏都是 string-literal 即字符串常量（所以可以编译期拼接），定义在 inttypes.h 中，然后各个平台的定义会有一些出入，从而做到跨平台。</p>
+<p>agora_log_i.h 已经#include<cinttypes> ，所以不需要额外包含头文件。C++11 requires a space between literal and identifier[-Wreserved-user-defined-literal]，即上述宏旁边有字符串的话，需要加空格其实对于 uint32_t，uint16_t, uint8_t 这种也应该分别使用PRIu32, PRIu16, PRIu8，但是考虑各个平台的定义都是一样的，并且由于<br>整形提升，所以用 <code>%u</code> 也没有啥问题</p>
+<p>markdown 画图： <a target="_blank" rel="noopener" href="https://juejin.cn/post/6893436635476819982">https://juejin.cn/post/6893436635476819982</a></p>
 <h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><ul>
 <li>windows arm 的编译：x64 的 VS2019 可以交叉编译 arm64（<code>toolchain --add Microsoft.VisualStudio.Component.VC.Tools.ARM --add Microsoft.VisualStudio.Component.VC.Tools.ARM64</code>），VS2022 可以直接在 win11 arm 上直接编译 arm64。目前 windows 必然定义 <code>_WIN32</code>，然后 cpu 相关的宏有三个：<code>_M_IX86</code>, <code>_M_IX64</code> 和 <code>_M_ARM64</code>（注意很多头文件在此 arch 上会报错）。ffmpeg 等需要 <code>clang-cl</code> 编译，并且需要 <code>clang-cl.exe --target=arm64-windows</code> （否则一些汇编代码无法识别），对于 MSVC 则需要 <code>--target=aarch64-pc-windows-msvc</code> 或者 <code>--target=arm64-pc-windows-msvc</code>。目前 windows arm 下还有很多指令并不支持，依然需要做适配的工作。</li>
 <li>是否应该把多明确一些 assumption（因为假设会随着时间可能不再成立）</li>
 </ul>
-<h2 id="ToDo"><a href="#ToDo" class="headerlink" title="ToDo"></a>ToDo</h2><ul>
-<li>static_cast 等多种转化了解一下：<a target="_blank" rel="noopener" href="https://devdocs.io/cpp/language/dynamic_cast">https://devdocs.io/cpp/language/dynamic_cast</a></li>
-<li>C/C++ 多线程、多继承、move、const 引用</li>
-<li>所有 index 以 0 开头，分简单复杂编译三个 branch、确保 clang/gcc/msvc 可编译</li>
-<li>手写 ninja, makefile, cmake, gn, ag（怎么使用本地文件）</li>
-<li>通篇阅读 <a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/process/clang-format.html">https://www.kernel.org/doc/html/latest/process/clang-format.html</a>，<a target="_blank" rel="noopener" href="https://clang.llvm.org/docs/index.html">https://clang.llvm.org/docs/index.html</a></li>
-<li>如何看二进制的 arch：<code>readelf -h xxx</code></li>
-<li>了解 Github CI/CD</li>
-</ul>
-<h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><p>-fno-rtti -fno-exceptions<br>-fno-rtti 禁用运行时类型信息<br>-fno-exceptions 禁用异常机制</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangmh/p/9804112.html">https://www.cnblogs.com/wangmh/p/9804112.html</a></p>
-<ul>
+<h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><ul>
 <li>perf 三大平台：<br>Linux： perf + perfetto<br>windows: xperf + WPA/WPR<br>mac: instruction + speedscope</li>
 </ul>
-<p>Trace 的原理和解读<br>当前涉及到 trace 的模块<br>media_engine2/third_party/trace/ 中有两个 gn 文件：agora_trace.gni, BUILD.gn 以及 trace_record.h 和 trace_record.cc（尽可<br>能的使用纯 C），以及<br>rte_sdk/cpp/api2/internal/ 中agora_service_i.h 即开启 Trace 和关闭 Trace 的接口（作为 lowLevel API）<br>rte_sdk/src/main/core/ 中有 agora_service_impl.h 和agora_service_impl.cpp 中调用下面的diagnostic_service_impl 中的实现<br>rte_sdk/src/main/core/ 中有diagnostic_service_impl.h 和diagnostic_service_impl.cpp 里面有控制 Trace 的实现，且在<br>StopTrace 将 trace.log 时候写入到文件<br>现在 trace 已经做成 highlevel api，通过 setParameters 的方式调用 (2021.12.22 )<br>trace 的使用<br>如果设置了 FEATURE_ENABLE_TRACE=false，那么所有 Trace 的部分都会失效，且无任何副作用，不占用 CPU<br>trace 最多可以附带两个参数，一般认为是足够了，如果再多会对内存要求太高（且需要改内部代码，因为是一个结构体）<br>我们一般使用 AG_TRACE_FUN 的宏放在放在开头使用，带参数就使用AG_TRACE_FUN1，AG_TRACE_FUN2。AG_TRACE_EVENT 跟AG_TRACE_FUN<br>基本一致，只是更加灵活一点。它们最终都是调用 AG_TRACE_UNIQUE_OBJ，这个宏会创建一个对象，创建即开始记录，析构时结束<br>可能出问题的地方<br>没有加锁操作？<br>容量问题<br>在 Perfetto 中显示会有点 bug<br>可能可以优化的地方<br>字符有很多相似点，可以生成两个文件（一个 map（如何不发给客户呢，貌似可以根据 API_LOGGER 命名），一个普通的数据）写一个脚<br>本，类似于加密的做法，这样我们就可以将 Trace 对外开放了？而且可以拓展容量，减轻内存压力</p>
+<p>Trace 的原理和解读</p>
+<p>Trace是静态的</p>
+<p>做一个插件，一个符号表，然后每次trace 有两个文件，再根据插件和符号表得到 perfetto UI 的图。这样做的好处是，可以给出让 trace 公开化，然后把符号表私有化即可</p>
+<p>当前涉及到 trace 的模块<br>media_engine2/third_party/trace/ 中有两个 gn 文件：agora_trace.gni, BUILD.gn 以及 trace_record.h 和 trace_record.cc（尽可<br>能的使用纯 C），以及<br>rte_sdk/cpp/api2/internal/ 中agora_service_i.h 即开启 Trace 和关闭 Trace 的接口（作为 lowLevel API）<br>rte_sdk/src/main/core/ 中有 agora_service_impl.h 和agora_service_impl.cpp 中调用下面的diagnostic_service_impl 中的实现<br>rte_sdk/src/main/core/ 中有diagnostic_service_impl.h 和diagnostic_service_impl.cpp 里面有控制 Trace 的实现，且在<br>StopTrace 将 trace.log 时候写入到文件<br>现在 trace 已经做成 highlevel api，通过 setParameters 的方式调用 (2021.12.22 )<br>trace 的使用<br>如果设置了 FEATURE_ENABLE_TRACE=false，那么所有 Trace 的部分都会失效，且无任何副作用，不占用 CPU<br>trace 最多可以附带两个参数，一般认为是足够了，如果再多会对内存要求太高（且需要改内部代码，因为是一个结构体）<br>我们一般使用 AG_TRACE_FUN 的宏放在放在开头使用，带参数就使用AG_TRACE_FUN1，AG_TRACE_FUN2。AG_TRACE_EVENT 跟AG_TRACE_FUN<br>基本一致，只是更加灵活一点。它们最终都是调用 AG_TRACE_UNIQUE_OBJ，这个宏会创建一个对象，创建即开始记录，析构时结束<br>可能出问题的地方<br>没有加锁操作？<br>容量问题<br>在 Perfetto 中显示会有点 bug<br>可能可以优化的地方<br>字符有很多相似点，可以生成两个文件（一个 map（如何不发给客户呢，貌似可以根据 API_LOGGER 命名），一个普通的数据）写一个脚<br>本，类似于加密的做法，这样我们就可以将 Trace 对外开放了？而且可以拓展容量，减轻内存压力</p>
 <p>git 高端操作：<a target="_blank" rel="noopener" href="https://git-scm.com/docs/gitattributes#Documentation/gitattributes.txt-union">https://git-scm.com/docs/gitattributes#Documentation/gitattributes.txt-union</a></p>
 <h2 id="找工作"><a href="#找工作" class="headerlink" title="找工作"></a>找工作</h2><ul>
 <li>找自己感兴趣的，即使能力不足，只要给面试机会就去面，无所谓！</li>
 <li>找和自己能力匹配的，再工作中其它时期读自己感兴趣的，然后往感兴趣的方向努力<br>-</li>
 </ul>
+<h2 id="gn-编译系统"><a href="#gn-编译系统" class="headerlink" title="gn 编译系统"></a>gn 编译系统</h2><p>secondary_source 是用来解决 gn 不能放在第三方的地方，比如一些协议决定了它就是不能放。<br>gn-ninja 文档搞成 PPT 的样子，重点看下 prebuilt 库（如何自己来搞）和  makefile 的交互，以及 hook，参考一下。想想 webrtc 会怎么做</p>
+<h2 id="自我要求"><a href="#自我要求" class="headerlink" title="自我要求"></a>自我要求</h2><ul>
+<li>企业微信只聊工作不做其它事情（工作上的思考放在个人微信）</li>
+<li>一个 PR 只做一件事</li>
+<li>工作时间只做工作的事情，非工作时间，吃饭时间除外</li>
+</ul>
+<h3 id="优秀程序员的自我修养"><a href="#优秀程序员的自我修养" class="headerlink" title="优秀程序员的自我修养"></a>优秀程序员的自我修养</h3><p>我们需要的工具</p>
+<ul>
+<li>git</li>
+<li>markdown, latex, mathjax</li>
+<li>Log，perf，文档(HLD设计，cookbook使用说明)，注释</li>
+<li>jira/confluence/bitbucket, CI/CD 工程化流程</li>
+<li>基本的数据库知识</li>
+<li>数据结构和算法</li>
+<li>正则表达式：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yyds/p/6913550.html">https://www.cnblogs.com/yyds/p/6913550.html</a></li>
+<li>pyechart：<a target="_blank" rel="noopener" href="https://gallery.pyecharts.org/#/Line/temperature_change_line_chart">https://gallery.pyecharts.org/#/Line/temperature_change_line_chart</a></li>
+<li>数据上报也是需要的，通过feature的方式加指标检测，然后默认关闭，又一个机器人默认打开，每日上报</li>
+<li>自动化编译。如果一个工作很繁琐，就应该考虑去自动化它</li>
+<li>积累的力量，技术沉淀，做完一件事，下次再来能不能高效的解决</li>
+<li>为什么是 sample，系统为什么不做 Trace（其实是有的 windows 和 mac 都有，但是不能定制状态，可视化也一般，MAC 相对较好）</li>
+</ul>
+<h2 id="设计理念："><a href="#设计理念：" class="headerlink" title="设计理念："></a>设计理念：</h2><p>一点小小的代价可以屏蔽很多假需求<br>故意给不推荐的事情设置障碍<br>工具如何不好用，就没人用<br>吃饭的时候多讨论工作<br>子模块不应该影响到父模块，子模块独自的需求应该拉独立的子分支，这样就不会干扰到其他人（教训：media_player)<br>api 前期设计不合理，后期为了兼容及时有好的方案也可能无法实施，后期依然要背负严重的历史包袱<br>看文档做交接，前人的经验是宝贵的，把 block 的 issue 提前看一下，能推就早点推，给其它同事预留更充足的时间！</p>
+<p>搞大项目（特别是自己不熟悉的）是后请务必关闭 format，包括 git commit 的format。知道自己改了什么很重要！</p>
+<h2 id="隔离清单"><a href="#隔离清单" class="headerlink" title="隔离清单"></a>隔离清单</h2><p>如何面对大灾荒？断电断网！断水断粮情况见下方</p>
+<p>隔离清单</p>
+<p>短期基本自救：自热火锅，自热米饭，饼干，可乐，矿泉水，八宝粥，水果罐头</p>
+<hr>
+<p>生活保障：电饭煲(一定要带煮粥功能），电热锅或电磁炉，热水壶，冰箱，东北大米 5kg x 2，糯米 1kg，速冻水饺，肥牛卷，生肉，豆干，豆皮，腐竹，娃娃菜，生菜，红薯，玉米，紫菜，虾末，面条，刀削面，鸡蛋面，螺蛳粉，大包方便面（调味料很有用）藕，汤圆，鸡蛋，皮蛋，鸡爪，螺蛳粉，洗洁精，生抽，盐，糖，榨菜，老干妈，生姜，（一次性）筷子，碗，削皮刀，水果刀</p>
+<p>长时间可放生疏：番茄，黄瓜，橙子，橘子，柚子，苹果，其它果蔬可买但是囤不了</p>
+<p>零食：瓜子，果冻，麻辣王子，泡椒凤爪，即食麦片，芝麻糊，罐头，锅巴，AD 钙奶，各种水，饼干，八宝粥，水果罐头</p>
+<p>生活用品：纸巾，垃圾桶(至少2个，至少一个带盖)垃圾桶(至少2个，至少一个带盖)垃圾袋（可回收干湿一定要分离），打火机，胶布，牙膏牙刷，感冒药，创可贴，消炎药，腹泻药，【七度空间，小雨伞】</p>
+<p>防疫物资：口罩（拒绝花里胡哨），免洗消毒剂，洗手液，消毒水，酒精，一次性手套，鞋套</p>
+<h2 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h2><p>第一步关闭所有关键内容的自动更新（至少包含 操作系统和核心编译器核心 IDE ）<br>各种工具来一个本地版本，调试可用后也不更新？</p>
+<p>这真的是一个好方案吗？</p>
+<p>工具是不是应该写在配置里面？<br>工具组如果不知道逻辑做指标，检测呢</p>
+<p>4S原则：Speed, Stablility, Security, Simple</p>
+<p>自己做一个工具的架构，</p>
+<ul>
+<li>明确功能需求</li>
+<li>最小化依赖（工业化，而非玩具）</li>
+<li>有明确的 UT 覆盖，有 Daily build</li>
+<li>对内对外</li>
+</ul>
+<p>功能需求</p>
+<ul>
+<li>时间</li>
+<li>路径</li>
+<li>log</li>
+<li>trace</li>
+<li>lock</li>
+<li>线程池</li>
+<li>callback</li>
+<li>统计</li>
+<li>添加一些必要的层来随时切换核心模块</li>
+<li>测试</li>
+<li>用宏来处理内部检测，不让外部直接调用内部</li>
+</ul>
+<p>工具的作用：工具是翘动一个东西的手段，要想把重要的活给你，你要先证明自己，你用工具解决了别人解决不了的问题，别人才会认同你。这样你积累的经验也才能被别人认可，别人不会对你的过程感兴趣！</p>
 
-              
-            </div>
+                
+              </div>
+            
             <hr/>
             <div>
               <div class="post-metas my-3">
@@ -386,8 +489,10 @@
             </div>
 
             
-  <article id="comments" lazyload>
-    
+  
+  
+    <article id="comments" lazyload>
+      
   <script type="text/javascript">
     Fluid.utils.loadComments('#comments', function() {
       var light = 'github-light';
@@ -415,7 +520,8 @@
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-  </article>
+    </article>
+  
 
 
           </article>
@@ -427,7 +533,10 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -465,6 +574,7 @@
 
   
   
+
 
 
 
@@ -595,8 +705,6 @@
 
 
 
-
-
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -612,94 +720,41 @@
     var boardCtn = jQuery('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init({
+    window.tocbot.init(Object.assign({
       tocSelector     : '#toc-body',
       contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
       linkClass       : 'tocbot-link',
       activeLinkClass : 'tocbot-active-link',
       listClass       : 'tocbot-list',
       isCollapsedClass: 'tocbot-is-collapsed',
       collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
       scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
   });
 </script>
 
 
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
 
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
+  <script>Fluid.plugins.codeWidget();</script>
 
 
   
@@ -721,6 +776,21 @@
       window.anchors.options.class = 'anchorjs-link-left';
     }
     window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
   });
 </script>
 
@@ -737,37 +807,42 @@
 
   
       <script>
-        MathJax = {
-          tex    : {
-            inlineMath: { '[+]': [['$', '$']] }
-          },
-          loader : {
-            load: ['ui/lazy']
-          },
-          options: {
-            renderActions: {
-              findScript    : [10, doc => {
-                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                  const display = !!node.type.match(/; *mode=display/);
-                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                  const text = document.createTextNode('');
-                  node.parentNode.replaceChild(text, node);
-                  math.start = { node: text, delim: '', n: 0 };
-                  math.end = { node: text, delim: '', n: 0 };
-                  doc.math.push(math);
-                });
-              }, '', false],
-              insertedScript: [200, () => {
-                document.querySelectorAll('mjx-container').forEach(node => {
-                  let target = node.parentNode;
-                  if (target.nodeName.toLowerCase() === 'li') {
-                    target.parentNode.classList.add('has-jax');
-                  }
-                });
-              }, '', false]
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
             }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
           }
-        };
+        });
       </script>
     
 

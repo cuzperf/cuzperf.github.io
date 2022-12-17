@@ -80,7 +80,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"cuzperf.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"cuzperf.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -89,6 +89,8 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
 
   
 <meta name="generator" content="Hexo 5.4.1"></head>
@@ -124,7 +126,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -136,7 +138,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -148,7 +150,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -160,7 +162,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/cppTemplate/">
                 <i class="iconfont icon-book"></i>
-                cpp
+                <span>cpp</span>
               </a>
             </li>
           
@@ -172,7 +174,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/readme/">
                 <i class="iconfont icon-notebook"></i>
-                README
+                <span>README</span>
               </a>
             </li>
           
@@ -184,7 +186,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/webTools/">
                 <i class="iconfont icon-briefcase"></i>
-                网页工具
+                <span>网页工具</span>
               </a>
             </li>
           
@@ -192,15 +194,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -302,9 +305,10 @@
                 
               </p>
             
-            <div class="markdown-body">
-              
-              <p>这里记录一些我的新玩具: <code>51 单片机</code> 的基础常识，作为初学者，下文必然是错误百出。</p>
+            
+              <div class="markdown-body">
+                
+                <p>这里记录一些我的新玩具: <code>51 单片机</code> 的基础常识，作为初学者，下文必然是错误百出。</p>
 <blockquote>
 <p>很久没更新博客了,毕竟很久没写程序了。数学类的嵌套的定义又太多，很不好写。</p>
 </blockquote>
@@ -335,8 +339,9 @@
 <h2 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h2><p>程序功能: 按下 k1 键 LED 跑马灯，K2 蜂鸣器发生，K3 数码管显示 1-8。由于不会中断，所以跑马灯写的很挫。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;reg52.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;intrins.h&gt;</span></span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> u16;<br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> u8;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> led P2</span><br>sbit k1=P3^<span class="hljs-number">1</span>;<br>sbit k2=P3^<span class="hljs-number">0</span>;<br>sbit k3=P3^<span class="hljs-number">2</span>;<br>sbit LSA=P2^<span class="hljs-number">2</span>;<br>sbit LSB=P2^<span class="hljs-number">3</span>;<br>sbit LSC=P2^<span class="hljs-number">4</span>;<br>sbit beep=P1^<span class="hljs-number">5</span>;<br>u8 beepS,i,ledState = <span class="hljs-number">0</span>, DigState = <span class="hljs-number">0</span>;<br>u8 code smgduan[<span class="hljs-number">17</span>] = &#123;<span class="hljs-number">0x3f</span>,<span class="hljs-number">0x06</span>,<span class="hljs-number">0x5b</span>,<span class="hljs-number">0x4f</span>,<span class="hljs-number">0x66</span>,<span class="hljs-number">0x6d</span>,<span class="hljs-number">0x7d</span>,<span class="hljs-number">0x07</span>,<br>                       <span class="hljs-number">0x7f</span>,<span class="hljs-number">0x6f</span>,<span class="hljs-number">0x77</span>,<span class="hljs-number">0x7c</span>,<span class="hljs-number">0x39</span>,<span class="hljs-number">0x5e</span>,<span class="hljs-number">0x79</span>,<span class="hljs-number">0x71</span>&#125;; <span class="hljs-comment">//显示0~F的值</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delay</span><span class="hljs-params">(u16 t)</span></span>&#123;   <span class="hljs-comment">//  每次约10us</span><br>  <span class="hljs-keyword">while</span>(t--);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ledStart</span><span class="hljs-params">()</span></span>&#123;<br>  ledState = <span class="hljs-number">1</span>;<br>  led=<span class="hljs-number">0xfe</span>;<br>  <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i!=<span class="hljs-number">7</span>;++i)&#123;<br>    led = _crol_(led,<span class="hljs-number">1</span>);<br>    <span class="hljs-built_in">delay</span>(<span class="hljs-number">50000</span>);<br>  &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ledStop</span><span class="hljs-params">()</span></span>&#123;<br>  ledState = <span class="hljs-number">0</span>;<br>  led = <span class="hljs-number">0xff</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DigDisplay</span><span class="hljs-params">()</span></span>&#123;<br>  DigState = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">8</span>;i++)&#123;<br>    <span class="hljs-built_in"><span class="hljs-keyword">switch</span></span>(i)&#123;   <span class="hljs-comment">//位选，选择点亮的数码管</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">0</span>):<br>        LSA=<span class="hljs-number">0</span>;LSB=<span class="hljs-number">0</span>;LSC=<span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第0位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">1</span>):<br>        LSA=<span class="hljs-number">1</span>;LSB=<span class="hljs-number">0</span>;LSC=<span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第1位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">2</span>):<br>        LSA=<span class="hljs-number">0</span>;LSB=<span class="hljs-number">1</span>;LSC=<span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第2位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">3</span>):<br>        LSA=<span class="hljs-number">1</span>;LSB=<span class="hljs-number">1</span>;LSC=<span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第3位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">4</span>):<br>        LSA=<span class="hljs-number">0</span>;LSB=<span class="hljs-number">0</span>;LSC=<span class="hljs-number">1</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第4位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">5</span>):<br>        LSA=<span class="hljs-number">1</span>;LSB=<span class="hljs-number">0</span>;LSC=<span class="hljs-number">1</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第5位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">6</span>):<br>        LSA=<span class="hljs-number">0</span>;LSB=<span class="hljs-number">1</span>;LSC=<span class="hljs-number">1</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第6位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">7</span>):<br>        LSA=<span class="hljs-number">1</span>;LSB=<span class="hljs-number">1</span>;LSC=<span class="hljs-number">1</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第7位</span><br>    &#125;<br>    P0=smgduan[i];  <span class="hljs-comment">//发送段码</span><br>    <span class="hljs-built_in">delay</span>(<span class="hljs-number">50000</span>);   <span class="hljs-comment">//间隔一段时间扫描</span><br>  &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DigStop</span><span class="hljs-params">()</span></span>&#123;<br>  DigState = <span class="hljs-number">0</span>;<br>  P0 = <span class="hljs-number">0x00</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">keyPress</span><span class="hljs-params">()</span></span>&#123;<br>  <span class="hljs-keyword">if</span>(k1==<span class="hljs-number">0</span>)&#123;    <span class="hljs-comment">// 检测k1是否按下</span><br>    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);<span class="hljs-comment">//消除抖动 一般大约10ms</span><br>    <span class="hljs-keyword">if</span>(k1==<span class="hljs-number">0</span>)&#123;  <span class="hljs-comment">//再次判断按键是否按下</span><br>      <span class="hljs-keyword">if</span>(ledState==<span class="hljs-number">0</span>)  <span class="hljs-built_in">ledStart</span>();<br>      <span class="hljs-keyword">else</span>  <span class="hljs-built_in">ledStop</span>();<br>    &#125;<br>    <span class="hljs-keyword">while</span>(!k1);   <span class="hljs-comment">//检测按键是否松开</span><br>  &#125;<br>  <span class="hljs-keyword">if</span>(k2==<span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">delay</span>(<span class="hljs-number">10</span>);<br>    <span class="hljs-keyword">if</span>(k2==<span class="hljs-number">0</span>)&#123;<br>      beepS=<span class="hljs-number">10</span>;<br>      <span class="hljs-keyword">while</span>(beepS&lt;<span class="hljs-number">200</span>)&#123;<br>        beep=~beep;<br>        <span class="hljs-built_in">delay</span>(beepS);<br>        ++beepS;<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">while</span>(!k2);<br>  &#125;<br>  <span class="hljs-keyword">if</span>(k3==<span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">delay</span>(<span class="hljs-number">10</span>);<br>    <span class="hljs-keyword">if</span>(k3==<span class="hljs-number">0</span>)&#123;<br>      <span class="hljs-keyword">if</span>(DigState == <span class="hljs-number">0</span>)  <span class="hljs-built_in">DigDisplay</span>();<br>      <span class="hljs-keyword">else</span>  <span class="hljs-built_in">DigStop</span>();<br>    &#125;<br>    <span class="hljs-keyword">while</span>(!k3);<br>  &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>  <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)  <span class="hljs-built_in">keyPress</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
 
-              
-            </div>
+                
+              </div>
+            
             <hr/>
             <div>
               <div class="post-metas my-3">
@@ -383,8 +388,10 @@
             </div>
 
             
-  <article id="comments" lazyload>
-    
+  
+  
+    <article id="comments" lazyload>
+      
   <script type="text/javascript">
     Fluid.utils.loadComments('#comments', function() {
       var light = 'github-light';
@@ -412,7 +419,8 @@
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-  </article>
+    </article>
+  
 
 
           </article>
@@ -424,7 +432,10 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -458,6 +469,7 @@
 
 
   
+
 
 
 
@@ -586,8 +598,6 @@
 
 
 
-
-
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -603,94 +613,41 @@
     var boardCtn = jQuery('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init({
+    window.tocbot.init(Object.assign({
       tocSelector     : '#toc-body',
       contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
       linkClass       : 'tocbot-link',
       activeLinkClass : 'tocbot-active-link',
       listClass       : 'tocbot-list',
       isCollapsedClass: 'tocbot-is-collapsed',
       collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
       scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
   });
 </script>
 
 
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
 
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
+  <script>Fluid.plugins.codeWidget();</script>
 
 
   
@@ -712,6 +669,21 @@
       window.anchors.options.class = 'anchorjs-link-left';
     }
     window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
   });
 </script>
 

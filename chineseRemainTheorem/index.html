@@ -75,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"cuzperf.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"cuzperf.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -84,6 +84,8 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
 
   
 <meta name="generator" content="Hexo 5.4.1"></head>
@@ -119,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -131,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -143,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -155,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/cppTemplate/">
                 <i class="iconfont icon-book"></i>
-                cpp
+                <span>cpp</span>
               </a>
             </li>
           
@@ -167,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/readme/">
                 <i class="iconfont icon-notebook"></i>
-                README
+                <span>README</span>
               </a>
             </li>
           
@@ -179,7 +181,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/webTools/">
                 <i class="iconfont icon-briefcase"></i>
-                网页工具
+                <span>网页工具</span>
               </a>
             </li>
           
@@ -187,15 +189,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -297,9 +300,10 @@
                 
               </p>
             
-            <div class="markdown-body">
-              
-              <p>仅以此博文，感谢知乎好友 <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/li-yong-xiang-38">Vivr0</a></p>
+            
+              <div class="markdown-body">
+                
+                <p>仅以此博文，感谢知乎好友 <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/li-yong-xiang-38">Vivr0</a></p>
 <p>中国剩余定理也称孙子定理，是中国古代求解一次同余方程组的方法。</p>
 <span id="more"></span>
 <p>用现代的语言来说就是：</p>
@@ -343,8 +347,9 @@ x-a_1 \equiv \frac{a_2-a_1}{d} (m_1t_1 + m_2t_2) \equiv \frac{a_2-a_1}{d} t_1 m_
 <h2 id="C-代码"><a href="#C-代码" class="headerlink" title="C++ 代码"></a>C++ 代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> LL;<br><br><span class="hljs-function">LL <span class="hljs-title">exgcd</span><span class="hljs-params">(LL a,LL b,LL&amp; x,LL&amp; y)</span></span>&#123;  <span class="hljs-comment">// ax + by = gcd(a,b)</span><br>    <span class="hljs-keyword">if</span>(b==<span class="hljs-number">0</span>)&#123;<br>        x=<span class="hljs-number">1</span>;y=<span class="hljs-number">0</span>;<span class="hljs-keyword">return</span> a;<br>    &#125;<br>    LL d=<span class="hljs-built_in">exgcd</span>(b,a%b,y,x);<br>    y-=a/b*x;<br>    <span class="hljs-keyword">return</span> d;<br>&#125;<br><br><span class="hljs-function">pair&lt;LL,LL&gt; <span class="hljs-title">crt2</span><span class="hljs-params">(LL a1,LL m1,LL a2,LL m2)</span></span>&#123; <span class="hljs-comment">// x = ai mod mi, m_i &gt;0</span><br>    LL t1,t2,ans = a2-a1;<br>    LL d = <span class="hljs-built_in">exgcd</span>(m1,m2,t1,t2);<br>    <span class="hljs-built_in">assert</span>(ans%d == <span class="hljs-number">0</span>);<br>    LL m = m1/d*m2;<br>    ans = (a1+ans/d*t1%m2*m1)%m; <span class="hljs-comment">// %m2 是避免溢出</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">make_pair</span>(ans&gt;<span class="hljs-number">0</span>?ans:ans+m,m);<br>&#125;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">22</span>;<br>LL a[N],m[N];<br><span class="hljs-function">pair&lt;LL,LL&gt; <span class="hljs-title">crt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>&#123; <span class="hljs-comment">// x = a[i] mod m[i], m[i] &gt;0</span><br>    pair&lt;LL,LL&gt; ans = <span class="hljs-built_in">make_pair</span>(a[<span class="hljs-number">0</span>]%m[<span class="hljs-number">0</span>],m[<span class="hljs-number">0</span>]);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;n;++i)&#123;<br>        ans = <span class="hljs-built_in">crt2</span>(ans.first,ans.second,a[i],m[i]);<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    LL a1,m1,a2,m2;<br>    <span class="hljs-keyword">while</span>(cin&gt;&gt;a1&gt;&gt;m1&gt;&gt;a2&gt;&gt;m2)&#123;<br>        LL ans = <span class="hljs-built_in">crt2</span>(a1,m1,a2,m2).first;<br>        cout&lt;&lt;ans&lt;&lt;endl;<br>        <span class="hljs-keyword">if</span>((ans-a1)%m1 || (ans-a2)%m2)&#123;<br>            cout&lt;&lt;<span class="hljs-string">&quot;something wrong&quot;</span>&lt;&lt;endl;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="Python-代码"><a href="#Python-代码" class="headerlink" title="Python 代码"></a>Python 代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># input : a,b natural number</span><br><span class="hljs-comment"># output: [gcd(a,b), x, y]</span><br><span class="hljs-comment"># ax + by = gcd(a,b)</span><br><span class="hljs-comment"># Algorithm: b(a//bx+y) + a%bx = gcd(b,a%b)</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">exgcd</span>(<span class="hljs-params">a,b</span>):</span><br>  <span class="hljs-keyword">if</span>(b == <span class="hljs-number">0</span>): <span class="hljs-keyword">return</span> [a,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]<br>  [d,y,x] = exgcd(b,a%b)<br>  <span class="hljs-keyword">return</span> [d,x,y-a//b*x]<br><br><span class="hljs-comment"># input:  x = ai mod m_i, mi&gt;0, i=1,2</span><br><span class="hljs-comment"># output: x = a mod m</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">crt2</span>(<span class="hljs-params">a1,m1,a2,m2</span>):</span><br>  [d,t1,t2] = exgcd(m1,m2)<br>  a,m = a2-a1,m1//d*m2<br>  <span class="hljs-keyword">if</span>(a%d):  <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&#x27;No solution to crt problem&#x27;</span>)<br>  <span class="hljs-keyword">return</span> [(a1+a//d*t1*m1)%m,m]<br><br><span class="hljs-comment"># input:  x = ai mod m_i, mi&gt;0</span><br><span class="hljs-comment"># output: x = a mod m</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">crt</span>(<span class="hljs-params">a,m</span>):</span><br>  n = <span class="hljs-built_in">len</span>(a)<br>  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">len</span>(m)!=n):  <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&#x27;a and m must have equal length&#x27;</span>)<br>  aa,mm = a[<span class="hljs-number">0</span>],m[<span class="hljs-number">0</span>]<br>  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,n):<br>    [aa,mm] = crt2(aa,mm,a[i],m[i])<br>  <span class="hljs-keyword">return</span> [aa,mm]<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>  [a,m]=crt([<span class="hljs-number">2</span>,-<span class="hljs-number">4</span>,<span class="hljs-number">5</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">12</span>])<br>  <span class="hljs-built_in">print</span>(a,m)<br>  [a,m]=crt([<span class="hljs-number">2</span>,-<span class="hljs-number">4</span>,<span class="hljs-number">4</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">12</span>])<br>  <span class="hljs-built_in">print</span>(a,m)<br></code></pre></td></tr></table></figure>
 
-              
-            </div>
+                
+              </div>
+            
             <hr/>
             <div>
               <div class="post-metas my-3">
@@ -381,8 +386,10 @@ x-a_1 \equiv \frac{a_2-a_1}{d} (m_1t_1 + m_2t_2) \equiv \frac{a_2-a_1}{d} t_1 m_
             </div>
 
             
-  <article id="comments" lazyload>
-    
+  
+  
+    <article id="comments" lazyload>
+      
   <script type="text/javascript">
     Fluid.utils.loadComments('#comments', function() {
       var light = 'github-light';
@@ -410,7 +417,8 @@ x-a_1 \equiv \frac{a_2-a_1}{d} (m_1t_1 + m_2t_2) \equiv \frac{a_2-a_1}{d} t_1 m_
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-  </article>
+    </article>
+  
 
 
           </article>
@@ -422,7 +430,10 @@ x-a_1 \equiv \frac{a_2-a_1}{d} (m_1t_1 + m_2t_2) \equiv \frac{a_2-a_1}{d} t_1 m_
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -460,6 +471,7 @@ x-a_1 \equiv \frac{a_2-a_1}{d} (m_1t_1 + m_2t_2) \equiv \frac{a_2-a_1}{d} t_1 m_
 
   
   
+
 
 
 
@@ -590,8 +602,6 @@ x-a_1 \equiv \frac{a_2-a_1}{d} (m_1t_1 + m_2t_2) \equiv \frac{a_2-a_1}{d} t_1 m_
 
 
 
-
-
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -607,94 +617,41 @@ x-a_1 \equiv \frac{a_2-a_1}{d} (m_1t_1 + m_2t_2) \equiv \frac{a_2-a_1}{d} t_1 m_
     var boardCtn = jQuery('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init({
+    window.tocbot.init(Object.assign({
       tocSelector     : '#toc-body',
       contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
       linkClass       : 'tocbot-link',
       activeLinkClass : 'tocbot-active-link',
       listClass       : 'tocbot-list',
       isCollapsedClass: 'tocbot-is-collapsed',
       collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
       scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
   });
 </script>
 
 
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
 
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
+  <script>Fluid.plugins.codeWidget();</script>
 
 
   
@@ -716,6 +673,21 @@ x-a_1 \equiv \frac{a_2-a_1}{d} (m_1t_1 + m_2t_2) \equiv \frac{a_2-a_1}{d} t_1 m_
       window.anchors.options.class = 'anchorjs-link-left';
     }
     window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
   });
 </script>
 
@@ -732,37 +704,42 @@ x-a_1 \equiv \frac{a_2-a_1}{d} (m_1t_1 + m_2t_2) \equiv \frac{a_2-a_1}{d} t_1 m_
 
   
       <script>
-        MathJax = {
-          tex    : {
-            inlineMath: { '[+]': [['$', '$']] }
-          },
-          loader : {
-            load: ['ui/lazy']
-          },
-          options: {
-            renderActions: {
-              findScript    : [10, doc => {
-                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                  const display = !!node.type.match(/; *mode=display/);
-                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                  const text = document.createTextNode('');
-                  node.parentNode.replaceChild(text, node);
-                  math.start = { node: text, delim: '', n: 0 };
-                  math.end = { node: text, delim: '', n: 0 };
-                  doc.math.push(math);
-                });
-              }, '', false],
-              insertedScript: [200, () => {
-                document.querySelectorAll('mjx-container').forEach(node => {
-                  let target = node.parentNode;
-                  if (target.nodeName.toLowerCase() === 'li') {
-                    target.parentNode.classList.add('has-jax');
-                  }
-                });
-              }, '', false]
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
             }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
           }
-        };
+        });
       </script>
     
 

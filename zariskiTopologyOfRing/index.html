@@ -1,0 +1,824 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cuzperf">
+  <meta name="keywords" content="math, cpp, python, sagemath">
+  
+    <meta name="description" content="设 \(A\) 是(交换)环。令 \(X\) 为 \(A\) 的素理想全体，定义 \(V(E)\) 为 \(A\) 中包含 \(E\) 的素理想全体，则将所有 \(V(E)\) 看做闭集，它满足拓扑空间三条公理，即构成了拓扑，该拓扑称作 Zariski 拓扑，这个拓扑空间叫做环 \(A\) 的素谱，记作 \(Spec(A)\)。 有了拓扑，我们自然要考虑：  集合的内部、闭包 拓扑的基，拓扑的分离">
+<meta property="og:type" content="article">
+<meta property="og:title" content="环的 Zariski 拓扑(素谱)">
+<meta property="og:url" content="http://cuzperf.cn/zariskiTopologyOfRing/index.html">
+<meta property="og:site_name" content="cuzperf">
+<meta property="og:description" content="设 \(A\) 是(交换)环。令 \(X\) 为 \(A\) 的素理想全体，定义 \(V(E)\) 为 \(A\) 中包含 \(E\) 的素理想全体，则将所有 \(V(E)\) 看做闭集，它满足拓扑空间三条公理，即构成了拓扑，该拓扑称作 Zariski 拓扑，这个拓扑空间叫做环 \(A\) 的素谱，记作 \(Spec(A)\)。 有了拓扑，我们自然要考虑：  集合的内部、闭包 拓扑的基，拓扑的分离">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-04-17T12:28:36.000Z">
+<meta property="article:modified_time" content="2023-02-24T07:59:40.074Z">
+<meta property="article:author" content="cuzperf">
+<meta property="article:tag" content="math">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>环的 Zariski 拓扑(素谱) - cuzperf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cuzperf.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>cuzperf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cppTemplate/">
+                <i class="iconfont icon-book"></i>
+                cpp
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/readme/">
+                <i class="iconfont icon-notebook"></i>
+                README
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webTools/">
+                <i class="iconfont icon-briefcase"></i>
+                网页工具
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="环的 Zariski 拓扑(素谱)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2016-04-17 20:28" pubdate>
+          2016年4月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          3.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          28 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">环的 Zariski 拓扑(素谱)</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    最后更新于：2023年2月24日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <p>设 <span class="math inline">\(A\)</span> 是(交换)环。令 <span class="math inline">\(X\)</span> 为 <span class="math inline">\(A\)</span> 的素理想全体，定义 <span class="math inline">\(V(E)\)</span> 为 <span class="math inline">\(A\)</span> 中包含 <span class="math inline">\(E\)</span> 的素理想全体，则将所有 <span class="math inline">\(V(E)\)</span> 看做闭集，它满足拓扑空间三条公理，即构成了拓扑，该拓扑称作 Zariski 拓扑，这个拓扑空间叫做环 <span class="math inline">\(A\)</span> 的素谱，记作 <span class="math inline">\(Spec(A)\)</span>。</p>
+<p>有了拓扑，我们自然要考虑：</p>
+<ol type="1">
+<li>集合的内部、闭包</li>
+<li>拓扑的基，拓扑的分离性，紧性</li>
+<li>空间的连通性，不可约性</li>
+<li>拓扑空间的连续函数等等概念</li>
+</ol>
+<p>在这个具体拓扑下的样子。</p>
+<span id="more"></span>
+<h2 id="zariski-拓扑">Zariski 拓扑</h2>
+<p>要证明 <span class="math inline">\(T = \lbrace V(E),E \subset A \rbrace\)</span> 作为闭集确实构成了一个拓扑，即证明 <span class="math inline">\(\emptyset \in T,X \in T\)</span>，且 <span class="math inline">\(T\)</span> 中任意并，有限交运算是封闭的。而显然我们有</p>
+<ol type="1">
+<li><span class="math inline">\(V(0)=X,V(A)=\emptyset\)</span></li>
+<li><span class="math inline">\(\cap_{i \in I} V(E_i) = V(\cup_{i \in I}E_i)\)</span></li>
+<li>为说明 <span class="math inline">\(V(E_1) \cap V(E_2) \in T\)</span> 我们需要一些准备工作。</li>
+</ol>
+<p>设 <span class="math inline">\(I(E)\)</span> 为由 <span class="math inline">\(E\)</span> 生成的理想，定义 <span class="math display">\[
+\sqrt{\alpha} = \lbrace x\in A : x^n \in \alpha \rbrace
+\]</span> 则显然我们有</p>
+<ol type="1">
+<li><span class="math inline">\(\alpha \subset \sqrt{\alpha} = \sqrt{\sqrt{\alpha}}\)</span></li>
+<li><span class="math inline">\(\sqrt{\alpha \beta} = \sqrt{\alpha \cap \beta} = \sqrt{\alpha} \cap \sqrt{\beta}\)</span></li>
+<li><span class="math inline">\(\sqrt{\alpha}=(1) \Leftrightarrow \sqrt{\alpha}\)</span></li>
+<li><span class="math inline">\(\sqrt{\alpha+\beta} = \sqrt{ \sqrt{\alpha}+\sqrt{\beta} }\)</span></li>
+<li>若 <span class="math inline">\(p\)</span> 是素理想，<span class="math inline">\(\sqrt{p} = p\)</span>。</li>
+<li><span class="math inline">\(V(E)=V(I(E))=V(\sqrt{I(E)})\)</span></li>
+<li><span class="math inline">\(V(\alpha \cap \beta)=V(\alpha \beta)=V(\alpha) \cup V(\beta)\)</span></li>
+<li><span class="math inline">\(\cap_{p \in V(\alpha)} p = \sqrt{\alpha}\)</span></li>
+<li><span class="math inline">\(V(E_1) = V(E_2) \Leftrightarrow \sqrt{I(E_1)} = \sqrt{I(E_2)}\)</span></li>
+</ol>
+<p>因此，<span class="math inline">\(V(E_1) \cap V(E_2) = V(I(E_1)) \cap V(I(E_2)) = V(I(E_1) \cap I(E_2)) \in T\)</span>。这说明它确实满足拓扑空间的三条公理。</p>
+<h2 id="例子">例子</h2>
+<p>有了拓扑之后，我们自然用具体的例子来看一下，这个拓扑大致长什么样子。 考虑 <span class="math inline">\(Spec(\mathbb{Z})\)</span> ，此时 <span class="math inline">\(X = \lbrace (p) : p\text{ is prime } \rbrace \cup (0)\)</span>。可以看出，包含 <span class="math inline">\((0)\)</span> 闭集仅有 <span class="math inline">\(X\)</span>，除 <span class="math inline">\((0)\)</span> 外，<span class="math inline">\(X\)</span> 中的单点集全是闭集。因此 <span class="math inline">\(Spec(\mathbb{Z})\)</span> 不是 <span class="math inline">\(T_1\)</span> 空间，由此可见，一般地，<span class="math inline">\(Spec(A)\)</span> 不是 <span class="math inline">\(T_1\)</span> 空间，即此拓扑的分离性很差。</p>
+<h2 id="内部和闭包">内部和闭包</h2>
+<p>因为在一般的拓扑理论中我们有 <span class="math inline">\(A^{o} = \overline{A^c} ^c\)</span>，因此，我们只需搞清楚 <span class="math inline">\(A^{o}\)</span> 和 <span class="math inline">\(\overline{A}\)</span>中任意一个即可，我们考虑闭包(<span class="math inline">\(\overline{A}\)</span>)。对于 <span class="math inline">\(Y \subset X\)</span>。若 <span class="math inline">\(Y \subset V(E)\)</span> 则 <span class="math inline">\(\forall \; p \in Y, E \in p\)</span>,即 $ E _{p Y} p$。因此 <span class="math inline">\(Y \subset V(\cap_{p \in Y}) \subset V(E)\)</span>。因此 <span class="math inline">\(\overline{Y} = V(\cap_{p \in Y})\)</span>。 特别地，</p>
+<ol type="1">
+<li><span class="math inline">\(\overline{\lbrace p_x \rbrace} = V(p_x)\)</span></li>
+<li><span class="math inline">\(\overline{\lbrace p_x \rbrace} = \lbrace p_x \rbrace \Leftrightarrow p_x\)</span> 是极大理想。</li>
+<li><span class="math inline">\(p_y \in \overline{\lbrace p_x \rbrace} \Leftrightarrow p_x \subset p_y\)</span></li>
+<li><span class="math inline">\(X\)</span> 是 <span class="math inline">\(T_0\)</span> 空间（<span class="math inline">\(p_y \notin \overline{\lbrace p_x \rbrace}\)</span> 或者 <span class="math inline">\(p_x \notin \overline{\lbrace p_y \rbrace}\)</span>）。</li>
+</ol>
+<p>因此，这样就很清楚为何在之前的例子<span class="math inline">\(Spec(\mathbb{Z})\)</span>中除<span class="math inline">\((0)\)</span>外单点集都是闭集了。有了之前的结论我们再看一下其他的例子。 <span class="math inline">\(Spec(\mathbb{R})\)</span>：此时 <span class="math inline">\(X = \lbrace 0 \rbrace\)</span> 只有一个元素拓扑是平凡的。 因为 若 <span class="math inline">\(A\)</span> 为域,则 <span class="math inline">\(A[x]\)</span> 为 ED 为 PID，其素理想为 <span class="math inline">\((f)\)</span> 不可约多项式。且 PID 中非零素理想就是极大理想。 <span class="math inline">\(Spec(\mathbb{C}[x])\)</span>: 此时 <span class="math inline">\(X = \lbrace (x+t): t \in \mathbb{C} \rbrace \cup \lbrace (0) \rbrace\)</span> <span class="math inline">\(Spec(\mathbb{R}[x])\)</span>: 此时 <span class="math inline">\(X = \lbrace (x+t): t \in \mathbb{R} \rbrace \cup \lbrace (x^2+ax+b): a,b \in \mathbb{R},a^2 &lt; 4b \rbrace \cup \lbrace (0) \rbrace\)</span></p>
+<h2 id="基紧性">基，紧性</h2>
+<p>由于 <span class="math inline">\(V(\cup_{i \in I}E_i) = \cap_{i \in I} V(E_i)\)</span> 我们定义 <span class="math inline">\(X_E = X \setminus V(E)\)</span>。则 <span class="math inline">\(X_E = \cup_{f \in E} X_f\)</span> 这说明 <span class="math inline">\(X_f,f \in A\)</span> 确实构成了 <span class="math inline">\(X\)</span> 的一组基。<span class="math inline">\(X_f\)</span> 表示不包含 <span class="math inline">\(f\)</span> 的素理想全体。</p>
+<ol type="1">
+<li><span class="math inline">\(X_f \cap X_g = X_{fg}\)</span></li>
+<li><span class="math inline">\(X_f = \emptyset \Leftrightarrow f\)</span> 是幂零的。</li>
+<li><span class="math inline">\(X_f = X \Leftrightarrow f\)</span> 是单位。</li>
+<li><span class="math inline">\(X_f = X_g \Leftrightarrow \sqrt{(f)} = \sqrt{(g)}\)</span></li>
+</ol>
+<h3 id="x-是拟紧的"><span class="math inline">\(X\)</span> 是拟紧的</h3>
+<blockquote>
+<p>这里的拟紧,实际上就是一般点集拓扑学中的紧，在代数中紧这个概念是拟紧＋Hausdorff。</p>
+</blockquote>
+<p>我们只需证明：若 <span class="math inline">\(\cup_{f \in S} X_f = X\)</span> 则存在有限并使上式成立。实际上，</p>
+<p><span class="math display">\[
+\cup_{f \in S} X_f = X \Leftrightarrow V(I(S))=V(S) = \emptyset
+\]</span> 因此 <span class="math inline">\(I(S)=A\)</span>，即 <span class="math inline">\(1 = \sum_{i=1}^n a_i s_i\)</span>。所以<span class="math inline">\(I(s_1,\cdots,s_n) = A\)</span>，即 <span class="math inline">\(\cup_{i=1}^n X_{s_i} = X\)</span>。证毕。</p>
+<h3 id="x_f-是拟紧的"><span class="math inline">\(X_f\)</span> 是拟紧的</h3>
+<p>我们只需证明：若 <span class="math inline">\(X_f \subset \cup_{g \in S} X_g\)</span>，则存在有限并使上式成立。实际上，</p>
+<p><span class="math display">\[
+X_f \subset \cup_{g \in S} X_g  \Leftrightarrow V(\sqrt{I(S)}) = V(S) \subset V(f)
+\]</span> 因此 <span class="math inline">\(f \in \sqrt{I(S)}\)</span>，即 <span class="math inline">\(f^m = \sum_{i=1}^n a_i s_i\)</span>。所以 <span class="math inline">\(f^m \in I(s_1,\cdots,s_n)\)</span>即。<span class="math inline">\(X_f \subset \cup_{i=1}^n X_{s_i}\)</span>。证毕。</p>
+<h3 id="任意开集-y-subset-x-是拟紧的当且仅当-y-可以写成有限多个-x_f-的并">任意开集 <span class="math inline">\(Y \subset X\)</span> 是拟紧的当且仅当 <span class="math inline">\(Y\)</span> 可以写成有限多个 <span class="math inline">\(X_f\)</span> 的并</h3>
+<p>Proof: 由 <span class="math inline">\(X_f\)</span> 是拟紧的知道，“<span class="math inline">\(\Leftarrow\)</span>” 是显然的。 “<span class="math inline">\(\Rightarrow\)</span>” 是因为存在<span class="math inline">\(E \subset A\)</span> 使得 <span class="math display">\[
+Y = X_E = \cup_{f \in E} X_f
+\]</span> 是 <span class="math inline">\(Y\)</span> 的一个开覆盖，由于是拟紧的，因此可以写成有限个 <span class="math inline">\(X_f\)</span> 的并，证毕。</p>
+<blockquote>
+<p>以上结论来自 Atiyah《An Introduction to Coummutative Algebra》习题。</p>
+</blockquote>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/math/">#math</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/computationOfPiX/" title="$\pi(x)$ 的计算">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">$\pi(x)$ 的计算</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/lieAlgebra/" title="李代数">
+                        <span class="hidden-mobile">李代数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'cuzperf/cuzperf.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,867 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cuzperf">
+  <meta name="keywords" content="math, cpp, python, sagemath">
+  
+    <meta name="description" content="1907 年 O.Perron 发现正矩阵的谱有特别有趣的性质。G.Frobenius 在 1908-1912 年间将 Perron 的工作推广到不可约非负矩阵的情形，并得到了新的进一步结果。Ferron-Frobenius 理论有很多证明方式，下面介绍 H.Wielandt 的优美证明。（一步步的读下去会发现很清晰明了简单）  非负矩阵的谱半径（下面有定义）是它的一个特征值，并且这个特征值对应着">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Perron-Frobenius 理论">
+<meta property="og:url" content="http://cuzperf.cn/perronFrobeniusTheory/index.html">
+<meta property="og:site_name" content="cuzperf">
+<meta property="og:description" content="1907 年 O.Perron 发现正矩阵的谱有特别有趣的性质。G.Frobenius 在 1908-1912 年间将 Perron 的工作推广到不可约非负矩阵的情形，并得到了新的进一步结果。Ferron-Frobenius 理论有很多证明方式，下面介绍 H.Wielandt 的优美证明。（一步步的读下去会发现很清晰明了简单）  非负矩阵的谱半径（下面有定义）是它的一个特征值，并且这个特征值对应着">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-12-17T02:27:18.000Z">
+<meta property="article:modified_time" content="2023-02-24T07:59:40.034Z">
+<meta property="article:author" content="cuzperf">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="matrix">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Perron-Frobenius 理论 - cuzperf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cuzperf.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>cuzperf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cppTemplate/">
+                <i class="iconfont icon-book"></i>
+                cpp
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/readme/">
+                <i class="iconfont icon-notebook"></i>
+                README
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webTools/">
+                <i class="iconfont icon-briefcase"></i>
+                网页工具
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Perron-Frobenius 理论"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2015-12-17 10:27" pubdate>
+          2015年12月17日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          6.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          57 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Perron-Frobenius 理论</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    最后更新于：2023年2月24日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <p>1907 年 O.Perron 发现正矩阵的谱有特别有趣的性质。G.Frobenius 在 1908-1912 年间将 Perron 的工作推广到不可约非负矩阵的情形，并得到了新的进一步结果。Ferron-Frobenius 理论有很多证明方式，下面介绍 H.Wielandt 的优美证明。（一步步的读下去会发现很清晰明了简单）</p>
+<blockquote>
+<p>非负矩阵的谱半径（下面有定义）是它的一个特征值，并且这个特征值对应着非负特征向量。</p>
+</blockquote>
+<span id="more"></span>
+<p>两个矩阵 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 称为置换相似的，若存在一个置换矩阵 <span class="math inline">\(P\)</span> 满足 <span class="math inline">\(P^TXP=Y\)</span>。设<span class="math inline">\(A\in M_n\)</span>.称<span class="math inline">\(A\)</span>为可约的，若 <span class="math inline">\(A\)</span> 置换相似于一个形如 <span class="math inline">\(\left( \begin{matrix} B &amp; 0 \\ C &amp; D \end{matrix} \right)\)</span> 其中 <span class="math inline">\(B,D\)</span> 是方阵，否则称 <span class="math inline">\(A\)</span> 不可约。</p>
+<blockquote>
+<p><span class="math inline">\(X \geq 0\)</span> 表示矩阵的每个元素 <span class="math inline">\(\geq 0\)</span>, （对向量，或者 <span class="math inline">\(&gt;0\)</span> 等情形类似定义即可）。</p>
+<p>以下矩阵除非特别说明都是 <span class="math inline">\(n \times n\)</span> 矩阵 <span class="math inline">\(n&gt;1\)</span></p>
+</blockquote>
+<h2 id="引理-1-设-a-是不可约非负矩阵y_n-0-且至少有一个分量为-0-则-iay-的正分量的个数大于-y-的正分量个数">引理 1 设 <span class="math inline">\(A\)</span> 是不可约非负矩阵，$y_+^{n} 0 $ 且至少有一个分量为 0, 则 <span class="math inline">\((I+A)y\)</span> 的正分量的个数大于 <span class="math inline">\(y\)</span> 的正分量个数</h2>
+<p><strong>Proof</strong>： 设 <span class="math inline">\(y\)</span> 恰好有 <span class="math inline">\(k\)</span> 个正分量，<span class="math inline">\(1 \leq k \leq n-1\)</span>。设 <span class="math inline">\(P\)</span> 是置换矩阵，使得<span class="math inline">\(x=Py\)</span>的前<span class="math inline">\(k\)</span>个分量为正，其它为 0，因为 <span class="math inline">\(A\)</span> 是非负矩阵，所以 <span class="math inline">\((I+A)y\)</span>的零分量个数不会超过 <span class="math inline">\(n-k\)</span>。假设这个个数等于 <span class="math inline">\(n-k\)</span>，则有 <span class="math inline">\(y_i = 0 \Rightarrow (Ay)_i = 0\)</span>。即 <span class="math inline">\((PAP^Tx)_i = (PAy)_i = 0,\quad i=k+1,\cdots,n\)</span>，设 <span class="math inline">\(B=PAP^T\)</span>. 则当 <span class="math inline">\(k+1 \leq i \leq n\)</span> 时， <span class="math display">\[
+(Bx)_i = \sum_{j=1} ^{n} b _{ij} x_j =
+\sum _{j=1} ^{k} b_{ij} x _j = 0
+\]</span> 但当 <span class="math inline">\(1 \leq j \leq k\)</span> 时，<span class="math inline">\(x_j &gt;0\)</span>。所以 <span class="math inline">\(b_{ij}=0\)</span>, 其中 <span class="math inline">\(k+1 \leq i \leq n,1 \leq j \leq k\)</span> 矛盾于 <span class="math inline">\(A\)</span> 不可约，证毕。</p>
+<h2 id="引理-2-设-a-是-n-阶不可约非负矩阵y_n-0-则-ian-1y0">引理 2 设 <span class="math inline">\(A\)</span> 是 <span class="math inline">\(n\)</span> 阶不可约非负矩阵，$y_+^{n} 0 $ 则 <span class="math inline">\((I+A)^{n-1}y&gt;0\)</span></h2>
+<h2 id="引理-3-设-n1则-n-阶非负矩阵-a-不可约当且仅当-ian-10">引理 3 设 <span class="math inline">\(n&gt;1\)</span>，则 <span class="math inline">\(n\)</span> 阶非负矩阵 <span class="math inline">\(A\)</span> 不可约当且仅当 <span class="math inline">\((I+A)^{n-1}&gt;0\)</span></h2>
+<p><strong>Proof</strong>: 应用<strong>引理 2</strong>，考虑 <span class="math inline">\((I+A)^{n-1}e_j\)</span> 即可。</p>
+<p>若 <span class="math inline">\(A\)</span> 不可约，考虑 <span class="math inline">\((I+A)^{n-1}e_j\)</span> 即可知 <span class="math inline">\((I+A)\)</span> 第 <span class="math inline">\(j\)</span> 列每个元素都大于 <span class="math inline">\(0\)</span>。</p>
+<p>若 <span class="math inline">\(A\)</span> 可约，按照定义存在置换矩阵 <span class="math inline">\(P\)</span> 使得 <span class="math inline">\(A = P^{T} \left( \begin{matrix} B &amp; 0 \\ C &amp; D \end{matrix} \right) P\)</span>，从而 <span class="math inline">\((I + A)^{n - 1} = P^{T} \left( \begin{matrix} B + I &amp; 0 \\ C &amp; D + I \end{matrix} \right)^{n - 1} P\)</span>。</p>
+<h2 id="引理-4-一个不可约非负矩阵的非负特征向量是正特征向量">引理 4 一个不可约非负矩阵的非负特征向量是正特征向量</h2>
+<p><strong>Proof</strong>：设 <span class="math inline">\(A\)</span> 是不可约非负矩阵，<span class="math inline">\(Ax=\lambda x, x \geq 0,x \neq 0\)</span>。显然 <span class="math inline">\(\lambda \geq 0\)</span> 我们有 <span class="math inline">\((I+A)x = (1 + \lambda)x\)</span> ，因此<span class="math inline">\((1+A)x\)</span>与<span class="math inline">\(x\)</span>有相同个数的正分量，有 <strong>引理 1</strong> 知 <span class="math inline">\(x&gt;0\)</span>。</p>
+<h2 id="collatz-wielandt-函数">Collatz-Wielandt 函数</h2>
+<p>设 <span class="math inline">\(A\)</span> 是一个非负矩阵。<span class="math inline">\(A\)</span> 的 Collatz－Wielandt 函数 <span class="math inline">\(f_A \colon \mathbf{R}_+ ^n \backslash \lbrace 0 \rbrace \to \mathbf{R}_+\)</span> 定义为： <span class="math display">\[
+f_A(x) = \min _{ x_i \neq 0 } \frac{(Ax) _i }{x_i}
+\]</span></p>
+<h2 id="引理-5-设-a-为非负不可约矩阵则">引理 5 设 <span class="math inline">\(A\)</span> 为非负不可约矩阵，则</h2>
+<ol type="1">
+<li><span class="math inline">\(f_A(tx) = f_A(x), \forall t &gt; 0\)</span></li>
+<li><span class="math inline">\(f_A(x) = \max \lbrace \rho | Ax-\rho x \geq 0 \rbrace\)</span></li>
+<li>设 <span class="math inline">\(x \in \mathbf{R} _+ ^n \backslash \lbrace 0 \rbrace\)</span>，记 <span class="math inline">\(y = (I+A)^{n-1} x\)</span> ,则 <span class="math inline">\(f_A(y) \geq f_A(x)\)</span>。</li>
+</ol>
+<p><strong>Proof</strong>：(1),(2)显然。下证明(3)： 我们有<span class="math inline">\(Ax- f_A(x)x \geq 0\)</span>，在等式两边左乘以<span class="math inline">\((I+A)^{n-1}\)</span>并利用<span class="math inline">\(A\)</span>和<span class="math inline">\((I+A)^{n-1}\)</span>乘法可交换的性质，得到<span class="math inline">\(A(I+A)^{n-1}x - f_A(x)(I+A)^{n-1}x \geq 0\)</span> 即 <span class="math inline">\(Ay - f_A(x)y\geq 0\)</span> 再由（2）证毕。</p>
+<blockquote>
+<p>容易证明：<span class="math inline">\(f_A\)</span> 是有界函数，实际上，<span class="math inline">\(f_A\)</span> 非负且不超过 <span class="math inline">\(A\)</span> 的最大行和（考虑每一个 <span class="math inline">\(f_A(e_j)\)</span> 即可)。</p>
+<p>记<span class="math inline">\(\Omega _n = \lbrace x \in \mathbf{R}_+ ^n | \sum _{i=1} ^n = 1 \rbrace\)</span> 引理 5.1 说明，我们只需要在 <span class="math inline">\(\Omega_n\)</span> 上研究 <span class="math inline">\(f_A\)</span> 即可。显然<span class="math inline">\(\Omega_n\)</span>是一个紧集，但是 <span class="math inline">\(f_A\)</span> 可能在 <span class="math inline">\(\Omega_n\)</span> 的边界不连续。</p>
+<p>但是我们仍然有下面 <strong>引理 6</strong>。</p>
+</blockquote>
+<h2 id="引理-6-设-a-是非负不可约矩阵则-f_a-在-_-n-0-上可以取到最大值">引理 6 设 <span class="math inline">\(A\)</span> 是非负不可约矩阵，则 <span class="math inline">\(f_A\)</span> 在 $_{+} ^n 0 $上可以取到最大值</h2>
+<p><strong>Proof</strong>: 记<span class="math inline">\(\Delta = (I+A)^{n-1} \Omega _n = \lbrace y \mid y=(I+A)^{n-1} x ,x \in \Omega_n \rbrace\)</span> 则 <span class="math inline">\(\Delta\)</span> 是一个紧集， 且有 <strong>引理 2</strong> 知 <span class="math inline">\(\Delta\)</span> 中向量都是正向量，因此 <span class="math inline">\(f_A\)</span> 在 <span class="math inline">\(\Delta\)</span> 上连续，由 Weierstrass 定理，<span class="math inline">\(f_A\)</span> 在某一点 <span class="math inline">\(y^0 \in \Delta\)</span> 取得 <span class="math inline">\(f_A\)</span> 在 <span class="math inline">\(\Delta\)</span> 上的最大值。记 <span class="math inline">\(z^0 = y^0/ \sum_{i=1} ^n y_i ^0 \in \Omega_ n\)</span>。<span class="math inline">\(\forall x \in \Omega_n\)</span>，记 <span class="math inline">\(y=(I+A)^{n-1}x\)</span> 利用 <strong>引理 5</strong> 可知 <span class="math display">\[
+f_A(x) \leq f_A(y) \leq f_A(y^0) = f_A(z^0)
+\]</span> 这就证明了 <span class="math inline">\(f_A\)</span> 在 <span class="math inline">\(z^0\)</span> 上取到它在 <span class="math inline">\(\Omega_n\)</span> 上的最大值。利用对$ z R_+ ^n 0 $ 和 <strong>引理 6.1</strong> 有 <span class="math display">\[
+f_A(z) = f_A(\frac{z}{\sum_{i=1}^n z_i}) \leq f_A(z^0)
+\]</span> 可见 <span class="math inline">\(f_A\)</span> 在 <span class="math inline">\(z^0\)</span> 处取到它在 <span class="math inline">\(R _+ ^n \backslash \lbrace 0 \rbrace\)</span> 上的最大值。</p>
+<h2 id="perron-frobenius-定理">Perron-Frobenius 定理</h2>
+<p><strong>矩阵 <span class="math inline">\(A\)</span> 的谱半径 <span class="math inline">\(\rho(A)\)</span> 定义成矩阵 <span class="math inline">\(A\)</span> 的所有特征值的绝对值的最大值。</strong></p>
+<p>现在万事俱备了，下面开始介绍著名的 Perron-Frobenius 定理</p>
+<h3 id="定理-7perron-frobenius-设a是非负不可约矩阵则下面结论成立">定理 7(Perron-Frobenius) 设<span class="math inline">\(A\)</span>是非负不可约矩阵，则下面结论成立</h3>
+<ol type="1">
+<li><span class="math inline">\(\rho(A)&gt;0\)</span> 且 <span class="math inline">\(\rho(A)\)</span> 是矩阵 <span class="math inline">\(A\)</span> 的一个单特征值</li>
+<li><span class="math inline">\(A\)</span> 有一个对应于 <span class="math inline">\(\rho(A)\)</span> 的正特征向量</li>
+<li><span class="math inline">\(A\)</span> 的每个非负特征向量都对应于特征值 <span class="math inline">\(\rho(A)\)</span></li>
+</ol>
+<p><strong>Proof</strong>：由 <strong>引理 6</strong> 存在 <span class="math inline">\(x^0 \in R _+ ^n \backslash \lbrace 0 \rbrace\)</span> 满足 <span class="math inline">\(f_A(x^0) \geq f_A(x), \forall x \in \mathbf{R}_+ ^n \backslash \lbrace 0 \rbrace\)</span> 记 <span class="math inline">\(r=f_A(x^0)\)</span>，取 <span class="math inline">\(u=(1,\cdots,1)^T\)</span>。因为 <span class="math inline">\(A\)</span> 不可约，没有零行，所以 <span class="math inline">\(r \geq f_A(u) = \min \sum_{i=1} ^n a_{ij} &gt; 0\)</span></p>
+<p>下面证明 <span class="math inline">\(r\)</span> 是 <span class="math inline">\(A\)</span> 的一个特征值，我们有: <span class="math inline">\(Ax^0 - rx^0 \geq 0\)</span>，假设 <span class="math inline">\(Ax^0 - rx^0 \neq 0\)</span>。由 <strong>引理 5.2</strong> 知 <span class="math inline">\((I+A)^{n-1}(Ax^0 - rx^0) &gt; 0\)</span> 即 <span class="math inline">\(Ay^0 - ry^0&gt; 0\)</span> 其中，<span class="math inline">\(y_0 = (I+A)^{n-1}x^0 &gt;0\)</span>。因此存在 <span class="math inline">\(\epsilon &gt; 0\)</span> 使得 <span class="math inline">\(Ay^0 - (r+\epsilon)y^0&gt; 0\)</span>. 由<strong>引理 5.2</strong>，<span class="math inline">\(f_A(y^0) \geq r+\epsilon &gt; r\)</span> 这就与 <span class="math inline">\(r=f_A(x^0)\)</span> 的最大性矛盾。所以 <span class="math inline">\(Ax^0=rx^0\)</span>。从而<span class="math inline">\(r\)</span>是<span class="math inline">\(A\)</span>的一个特征值，<span class="math inline">\(x^0\)</span> 是 <span class="math inline">\(A\)</span> 的一个特征向量。有 <strong>引理 4</strong> 知，<span class="math inline">\(x^0\)</span> 是正向量。 设 <span class="math inline">\(\lambda\)</span> 是 <span class="math inline">\(A\)</span> 的任何一个特征向量：<span class="math inline">\(Ax=\lambda x\)</span> 则 <span class="math inline">\(|\lambda||x| \leq A|x|\)</span>，于是 <span class="math inline">\(|\lambda| \leq f_ A(|x|) \leq r\)</span> 这表明 <span class="math inline">\(r = \rho(A)\)</span>。</p>
+<blockquote>
+<p>以下关于证明 <span class="math inline">\(\rho(A)\)</span> 是单特征值的部分可以不看</p>
+</blockquote>
+<hr />
+<p>现证明 <span class="math inline">\(\rho(A)\)</span> 是单特征值，我们先证明 <span class="math inline">\(\rho(A)\)</span> 的几何重数是 1，设 <span class="math inline">\(Ay = \rho(A) y,0 \neq y \in \mathbf{C}^n\)</span> 则 <span class="math inline">\(A|y| \geq \rho(A)|y|\)</span> 上面证明过程表明上式是等式（细品，走一遍没毛病）且 <span class="math inline">\(|y|&gt;0\)</span>。可见 <span class="math inline">\(A\)</span> 的对应于 <span class="math inline">\(\rho(A)\)</span> 的特征向量不含零分量。设 <span class="math inline">\(y\)</span> 和 <span class="math inline">\(z\)</span> 是对应 <span class="math inline">\(\rho(A)\)</span> 的特征向量。则 <span class="math inline">\(|y|&gt;0,|z|&gt;0.z_1 y-y_ 1 z\)</span> 属于 <span class="math inline">\(\rho(A)\)</span> 的特征子空间，但 <span class="math inline">\(z_1 y-y_ 1 z\)</span> 的第一个分量为 0，所以它不可能是 <span class="math inline">\(\rho(A)\)</span> 的特征值，因此，<span class="math inline">\(z_1 y-y_ 1 z＝0\)</span>，<span class="math inline">\(y\)</span> 和 <span class="math inline">\(z\)</span> 线性相关，所以 <span class="math inline">\(\rho(A)\)</span> 的几何重数为 1.</p>
+<p>为了证明 <span class="math inline">\(r=\rho(A)\)</span> 是特征多项式 <span class="math inline">\(\phi(\lambda) = det(\lambda I - A)\)</span> 的单根，只需证明，导数 <span class="math inline">\(\phi&#39;(r) \neq 0\)</span></p>
+<p>用 <span class="math inline">\(adj(X)\)</span> 表示矩阵 <span class="math inline">\(X\)</span> 的 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5/10034983?fr=aladdin">伴随矩阵</a>。我们有 <span class="math display">\[
+\phi&#39;(\lambda) = \sum_{i=1}^n det[(\lambda I - A)(i|i)]
+=tr[adj(\lambda I - A)]
+\]</span> &gt; <span class="math inline">\(X(i|j)\)</span> 表示矩阵去掉第 <span class="math inline">\(i\)</span> 行和第 <span class="math inline">\(j\)</span> 列所剩下的矩阵</p>
+<p>记 <span class="math inline">\(B(r)=adj(rI-A)\)</span> 则 <span class="math inline">\(\phi&#39;(r) = tr B(r)\)</span> <span class="math display">\[
+(rI-A)B(r) = det(rI-A)I
+\]</span> 因为 <span class="math inline">\(r\)</span> 的几何重数为 1，所以 <span class="math inline">\(rank(rI-A)=n-1\)</span>，于是 <span class="math inline">\(B(r) \neq 0\)</span>。设 <span class="math inline">\(b\)</span> 是<span class="math inline">\(B(r)\)</span>的任意一个非零列，则<span class="math inline">\((rI-A)b=0\)</span>,因此 <span class="math inline">\(b\)</span> 是 <span class="math inline">\(A\)</span> 的对应于 <span class="math inline">\(r\)</span> 的特征向量，但是 <span class="math inline">\(A\)</span> 有一个对应于 <span class="math inline">\(r\)</span> 的特征向量 <span class="math inline">\(x^0\)</span>，且因为 <span class="math inline">\(r\)</span> 的几何重数为 1，因此 <span class="math inline">\(b\)</span> 是 <span class="math inline">\(x^0\)</span> 的一个常数倍，从而 <span class="math inline">\(b&gt;0\)</span> 或者 <span class="math inline">\(b&lt;0\)</span>。这就证明了 <span class="math inline">\(B(r)\)</span> 的每一列要么是零列，要么是正向量，要么是负向量。考虑 <span class="math inline">\([B(r)]^T = adj(rI-A^T),r=\rho(A)=\rho(A^T)\)</span>。上面结论应用于 <span class="math inline">\([B(r)]^T\)</span> 的列，所以 <span class="math inline">\(B(r)&gt;0\)</span> 或者 <span class="math inline">\(B(r)&lt;0\)</span>，从而 <span class="math inline">\(\phi&#39;(r)=tr[B(r)] \neq 0\)</span>，这就证明了 <span class="math inline">\(\rho(A)\)</span> 是单特征值。</p>
+<hr />
+<p>我们已经证明了(1),(2)。现在来证明(3)。设 <span class="math inline">\(y&gt;0\)</span> 是 <span class="math inline">\(A^T\)</span> 对应于 <span class="math inline">\(\rho(A)\)</span> 的特征向量，设 <span class="math inline">\(x\)</span> 是 <span class="math inline">\(A\)</span> 的任意一个非负特征向量：<span class="math inline">\(Ax = \mu x\)</span>。则 <span class="math inline">\(\mu y^T x = y^T Ax = \rho(A)y^Tx\)</span>, 因为 <span class="math inline">\(y^Tx&gt;0\)</span>, 我们有 <span class="math inline">\(\mu = \rho(A)\)</span>，证毕。</p>
+<blockquote>
+<p>由<strong>引理 4</strong>，<span class="math inline">\(A\)</span> 的非负特征向量实际上都是正向量，因此结论 3 可叙述成：在<span class="math inline">\(A\)</span> 的所有特征向量中，只有 <span class="math inline">\(\rho(A)\)</span> 有非负特征向量。上述证明还确定了以下结果：</p>
+</blockquote>
+<h2 id="定理-8.-设-a-是不可约非负矩阵则-rhoa-max-lbrace-f_axxin-mathbfr_-n-backslash-lbrace-0-rbrace-rbrace-0-若-x-_-n-0-f_ax-a-则x0-是对应于rhoa的一个特征向量">定理 8. 设 <span class="math inline">\(A\)</span> 是不可约非负矩阵，则 <span class="math inline">\(\rho(A) = \max \lbrace f_A(x)|x\in \mathbf{R}_+ ^n \backslash \lbrace 0 \rbrace \rbrace &gt; 0\)</span> , 若$ x  _+ ^n 0 ,f_A(x) = (A)$ 则<span class="math inline">\(x&gt;0\)</span> 是对应于<span class="math inline">\(\rho(A)\)</span>的一个特征向量</h2>
+<h2 id="定理-9.-设-a-是一个非负矩阵则-rhoa-是-a-的特征值且-a-有一个对应于rhoa的非负特征向量">定理 9. 设 <span class="math inline">\(A\)</span> 是一个非负矩阵，则 <span class="math inline">\(\rho(A)\)</span> 是 <span class="math inline">\(A\)</span> 的特征值，且 <span class="math inline">\(A\)</span> 有一个对应于<span class="math inline">\(\rho(A)\)</span>的非负特征向量</h2>
+<p><strong>Proof</strong>：设<span class="math inline">\(A\)</span>的阶数为<span class="math inline">\(n\)</span>，定理对<span class="math inline">\(n=1\)</span>是平凡地成立。下面设<span class="math inline">\(n=2\)</span>，用<span class="math inline">\(J\)</span>表示元素全为 1 的矩阵。 对于正整数 <span class="math inline">\(k\)</span>，记 <span class="math inline">\(A_k = A + \frac{1}{k} J\)</span> 是一个正矩阵，由 Perron-Frobenius 定理，<span class="math inline">\(A_k\)</span> 在 <span class="math inline">\(\Omega _n = \lbrace x \in \mathbf{R}_+ ^n | \sum _{i=1} ^n = 1 \rbrace\)</span> 中有唯一一个对应于 <span class="math inline">\(\rho(A_k)\)</span> 的特征向量 <span class="math inline">\(x^k\)</span>。</p>
+<p>因为向量序列 <span class="math inline">\(\lbrace x^k \rbrace\)</span> 有界因此，由 Bolzano-Weierstrass 定理,$x^k $ 有收敛子列 <span class="math inline">\(\lbrace x^{k_i} \rbrace: \lim_{i \to \infty } x^{k_i} = x\)</span>。显然 <span class="math inline">\(x \in \Omega_n\)</span> 因此 <span class="math display">\[
+A _{k_i}x^{k _i} = \rho(A_{k _i}) x^{k_i}
+\]</span> 注意到当 <span class="math inline">\(i \to \infty\)</span> 时， <span class="math inline">\(A _{k_i} \to A , \rho(A _{k_i}) \to \rho(A)\)</span> 从而得到 <span class="math inline">\(Ax = \rho(A)x\)</span>，证毕。</p>
+<blockquote>
+<p>至此，Prron-Frobenius 定理介绍完毕。下面介绍一个非负矩阵特征值的界。</p>
+</blockquote>
+<h2 id="定理-10-设-a-是非负矩阵则">定理 10 设 <span class="math inline">\(A\)</span> 是非负矩阵，则</h2>
+<p><span class="math display">\[
+\min_{1 \leq i \leq n} r_i \leq \rho(A) \leq \max_{1 \leq i \leq n} r_i
+\]</span></p>
+<p><span class="math display">\[
+\min_{1 \leq i \leq n} c_i \leq \rho(A) \leq \max_{1 \leq i \leq n} c_i
+\]</span></p>
+<p>其中 <span class="math inline">\(r_i, c_i\)</span> 分别为 <span class="math inline">\(A\)</span> 的第 <span class="math inline">\(i\)</span> 行之和以及第 <span class="math inline">\(i\)</span> 列之和。</p>
+<p><strong>Proof</strong>：设 <span class="math inline">\(x\)</span> 是 <span class="math inline">\(A^T\)</span> 的一个 Perron 向量(对应于谱半径的非负特征向量)。因为 <span class="math inline">\(\rho(A^T)=\rho(A)\)</span>， 从而 <span class="math inline">\(A^Tx=\rho(A)x\)</span> 得到 <span class="math display">\[
+\rho(A)x_i = \sum_{k=1}^n a_{ki}x_k \qquad i = 1,\cdots,n.
+\]</span> 将这些等式相加得到 <span class="math inline">\(\rho(A) \sum_{i=1}^n x_i =\sum_{k=1}^n r_k x_k\)</span> 即 <span class="math display">\[
+\rho(A)= \frac{\sum_{k=1}^n r_k x_k }{\sum_{i=1}^n x_i}
+\]</span> 证毕。</p>
+<h2 id="定理-11wielandt-设a是不可约非负矩阵且b-leq-a-则对于-b-的任何特征值-lambda有">定理 11(Wielandt) 设<span class="math inline">\(A\)</span>是不可约非负矩阵，且<span class="math inline">\(|B| \leq A\)</span> 则对于 <span class="math inline">\(B\)</span> 的任何特征值 <span class="math inline">\(\lambda\)</span>有</h2>
+<p><span class="math display">\[
+|\lambda| \leq \rho(A)
+\]</span></p>
+<p><strong>Proof</strong>：设<span class="math inline">\(Bx=\lambda x\)</span> 则 <span class="math inline">\(|B||x| \geq |\lambda||x|\)</span>，但是 <span class="math inline">\(|B| \leq A\)</span>，所以 <span class="math inline">\(|\lambda| |x| \leq |B||x| \leq A |x|\)</span>，由 <strong>引理 5.2</strong> 和 <strong>引理 8</strong> 知 <span class="math display">\[
+|\lambda| \leq f_A(|x|) \leq \rho(A)
+\]</span> 证毕。</p>
+<p>根据谱半径的连续性，我们马上有如下推论</p>
+<ol type="1">
+<li>若矩阵 <span class="math inline">\(A\)</span> 非负，且<span class="math inline">\(|B| \leq A\)</span>，则 <span class="math inline">\(\rho(B) \leq \rho(A)\)</span></li>
+<li>对任意矩阵<span class="math inline">\(A\)</span>，<span class="math inline">\(\rho(A) \leq \rho(|A|)\)</span>.(这个直接证明也可以)</li>
+</ol>
+<blockquote>
+<p>本文源自詹兴致所著的《矩阵论》第六章。</p>
+</blockquote>
+<p>定理虽然很长但是整个过程十分优美，思路十分清晰，仔细分析每一步还是很容易看懂的，并且在证明的过程中就能体会为什么一开始要提出“非负不可约矩阵”的概念了，然后应用连续性把一些结果推广到非负矩阵。</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/math/">#math</a>
+      
+        <a href="/tags/matrix/">#matrix</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/divBlock/" title="整除分块">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">整除分块</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/schurTheorem/" title="Schur 定理">
+                        <span class="hidden-mobile">Schur 定理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'cuzperf/cuzperf.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,979 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cuzperf">
+  <meta name="keywords" content="math, cpp, python, sagemath">
+  
+    <meta name="description" content="同一类型元件串并联    类型 串联 并联     电阻 \(R_1 + R_2\) \(\frac{1}{\frac{1}{R_1} + \frac{1}{R_2}}\)   电感 \(L_1 + L_2\) \(\frac{1}{\frac{1}{L_1} + \frac{1}{L_2}}\)   电容 \(\frac{1}{\frac{1}{C_1} + \frac{1}{C_2}}\) \">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RLC 串并联合集">
+<meta property="og:url" content="http://cuzperf.cn/RLC/index.html">
+<meta property="og:site_name" content="cuzperf">
+<meta property="og:description" content="同一类型元件串并联    类型 串联 并联     电阻 \(R_1 + R_2\) \(\frac{1}{\frac{1}{R_1} + \frac{1}{R_2}}\)   电感 \(L_1 + L_2\) \(\frac{1}{\frac{1}{L_1} + \frac{1}{L_2}}\)   电容 \(\frac{1}{\frac{1}{C_1} + \frac{1}{C_2}}\) \">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://cuzperf.cn/RLC/RLC.drawio.png">
+<meta property="article:published_time" content="2023-03-29T03:11:11.000Z">
+<meta property="article:modified_time" content="2023-03-29T03:18:03.833Z">
+<meta property="article:author" content="cuzperf">
+<meta property="article:tag" content="math, cpp, python, sagemath">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://cuzperf.cn/RLC/RLC.drawio.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>RLC 串并联合集 - cuzperf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cuzperf.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>cuzperf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cppTemplate/">
+                <i class="iconfont icon-book"></i>
+                cpp
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/readme/">
+                <i class="iconfont icon-notebook"></i>
+                README
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webTools/">
+                <i class="iconfont icon-briefcase"></i>
+                网页工具
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="RLC 串并联合集"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-29 11:11" pubdate>
+          2023年3月29日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          4.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          39 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">RLC 串并联合集</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    最后更新于：2023年3月29日 上午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <h2 id="同一类型元件串并联">同一类型元件串并联</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">类型</th>
+<th style="text-align: center;">串联</th>
+<th style="text-align: center;">并联</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">电阻</td>
+<td style="text-align: center;"><span class="math inline">\(R_1 + R_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{\frac{1}{R_1} + \frac{1}{R_2}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">电感</td>
+<td style="text-align: center;"><span class="math inline">\(L_1 + L_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{\frac{1}{L_1} + \frac{1}{L_2}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">电容</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{\frac{1}{C_1} + \frac{1}{C_2}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(C_1 + C_2\)</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="电感电容离散化">电感电容离散化</h2>
+<h3 id="梯形法">梯形法</h3>
+<p><span class="math display">\[
+u = L \frac{di}{dt} \stackrel{Trapezoid}{\Longrightarrow} \frac{u(k) + u(k - 1)}{2} = L \frac{i(k) - i(k - 1)}{\Delta t}
+\]</span> 电感离散形式：<span class="math inline">\(i(k) = \frac{\Delta t}{2L} u(k) + \frac{\Delta t}{2L} u(k) + i(k - 1)\)</span></p>
+<p><span class="math display">\[
+i = C \frac{du}{dt} \stackrel{Trapezoid}{\Longrightarrow} \frac{i(k) + i(k - 1)}{2} = C \frac{u(k) - u(k - 1)}{\Delta t}
+\]</span></p>
+<p>电容离散形式：<span class="math inline">\(i(k) = \frac{2C}{\Delta t} u(k) - \frac{2C}{\Delta t} u(k - 1) - i(k - 1)\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">梯形法</th>
+<th style="text-align: center;">电感</th>
+<th style="text-align: center;">电容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">G</td>
+<td style="text-align: center;"><span class="math inline">\(G_L = \frac{\Delta t}{2 L}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(G_C = \frac{2C}{\Delta t}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">j 初值</td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = G_L u(k) + i(k)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = -G_C u(k) - i(k)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">j 更新（串联）</td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = 2 i(k) - j(k - 1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = -2 i(k) + j(k-1)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">j 更新（并联）</td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = 2 G_L u(k) + j(k - 1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = -2G_C u(k) - j(k - 1)\)</span></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>由于默认使用节点法求解，所以 j 的更新一般用 “并联” 方式(下同)</p>
+</blockquote>
+<h3 id="后向-backward欧拉法">（后向 backward）欧拉法</h3>
+<p><span class="math display">\[
+u = L \frac{di}{dt} \stackrel{Euler}{\Longrightarrow} u(k) = L \frac{i(k) - i(k - 1)}{\Delta t}
+\]</span></p>
+<p>电感离散形式：<span class="math inline">\(i(k) = \frac{\Delta t}{2L} u(k) + i(k - 1)\)</span></p>
+<p><span class="math display">\[
+i = C \frac{du}{dt} \stackrel{Euler}{\Longrightarrow}  i(k) = C \frac{u(k) - u(k - 1)}{\Delta t}
+\]</span></p>
+<p>电容离散形式：<span class="math inline">\(i(k) = \frac{2C}{\Delta t} u(k) - \frac{2C}{\Delta t} u(k - 1)\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>半步长</strong> 欧拉法</th>
+<th style="text-align: center;">电感</th>
+<th style="text-align: center;">电容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">G</td>
+<td style="text-align: center;"><span class="math inline">\(G_L = \frac{\Delta t}{2 L}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(G_C = \frac{2C}{\Delta t}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">j 初值</td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = i(k)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = -G_C u(k)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">j 更新（串联）</td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = i(k)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = -i(k) + j(k - 1)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">j 更新（并联）</td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = G_L u(k) + j(k - 1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = -G_C u(k)\)</span></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意到梯形法和半步长欧拉法离散化对应的电感和电容是一致的。不同的仅仅是 j 的取值和迭代方式</p>
+</blockquote>
+<h2 id="rlc-电路">RLC 电路</h2>
+<figure>
+<img src="RLC.drawio.png" srcset="/img/loading.gif" lazyload alt="RLC" /><figcaption>RLC</figcaption>
+</figure>
+<p>我们始终有 <span class="math inline">\(i(k) = Gu(k) + j(k - 1)\)</span></p>
+<blockquote>
+<p>无论是电感还是电容或者是混合情况，甚至是电阻（电阻可以认为 <span class="math inline">\(j(k - 1)\)</span> 恒等于 0）都成立</p>
+</blockquote>
+<h3 id="串联情况">串联情况</h3>
+<p><span class="math display">\[
+i = G_R u_{ab} = G_L u_{bc} + j_L = G_C u_{cd} + j_C
+\]</span></p>
+<p>可知 <span class="math display">\[
+u = u_{ad} = u_{ab} + u_{bc} + u_{cd} = \frac{i}{G_R} + \frac{i - j_L}{G_L} + \frac{i - j_C}{G_C}
+\]</span></p>
+<p>写成 <span class="math inline">\(i = G u + j\)</span> 的形式可知</p>
+<p><span class="math display">\[
+G = \frac{1}{\frac{1}{G_R} + \frac{1}{G_L} + \frac{1}{G_C}} \qquad j = \frac{G}{G_L}j_L + \frac{G}{G_C}j_C
+\]</span></p>
+<p>但是注意到这里的 <span class="math inline">\(j\)</span> 的<strong>更新</strong>需要</p>
+<h3 id="并联情况">并联情况</h3>
+<p><span class="math display">\[
+i_R = G_R u, \quad  i_L = G_L u + j_L, \quad i_C= G_C u + j_C
+\]</span></p>
+<p>可知</p>
+<p><span class="math display">\[
+i = i_R + i_L + i_C = (G_R + G_L + G_C) u + (j_L + j_C)
+\]</span></p>
+<h3 id="j-的初值和更新"><span class="math inline">\(j\)</span> 的初值和更新</h3>
+<p>由于 RLC 串联有相同的电流 <span class="math inline">\(i\)</span>，并联有相同的电压 <span class="math inline">\(u\)</span>，因此 <span class="math inline">\(j\)</span> 的更新方式要分情况讨论。另外 RLC 中 <span class="math inline">\(j\)</span>的更新 必须依赖 <span class="math inline">\(j_L\)</span> 和 <span class="math inline">\(j_C\)</span> 的更新（即它们的值需要被保存）</p>
+<p><strong>串联方式更新</strong></p>
+<ol type="1">
+<li>电流 <span class="math inline">\(i(k) = G u(k) + j(k - 1)\)</span></li>
+<li><ul>
+<li>梯形法：更新历史值 <span class="math inline">\(j_L(k) = 2 i(k) - j_L(k - 1), \; j_C = -2i(k) + j_C(k - 1)\)</span></li>
+<li>欧拉法：更新历史值 <span class="math inline">\(j_L(k) = i(k), \; j_C(k) = -i(k) + j_C(k - 1)\)</span></li>
+</ul></li>
+<li>更新 <span class="math inline">\(j = \frac{G}{G_L}j_L + \frac{G}{G_C}j_C\)</span></li>
+</ol>
+<ul>
+<li>梯形法（更为复杂不用于计算）：<span class="math inline">\((\frac{G}{G_L} - \frac{G}{G_C}) i(k) + \frac{G}{G_L} j_L(k - 1) + \frac{G}{G_C} j_C(k - 1)\)</span></li>
+<li>欧拉法（更为复杂不用于计算）：<span class="math inline">\((\frac{G}{G_L} - \frac{G}{G_C}) i(k) + \frac{G}{G_C} j_C(k - 1)\)</span></li>
+</ul>
+<p><strong>并联方式更新</strong></p>
+<ol type="1">
+<li><ul>
+<li>梯形法：更新历史值 <span class="math inline">\(j_L(k) = 2 G_L u(k) + j_L(k - 1), \; j_C = -2 G_c u(k) - j_C(k - 1)\)</span></li>
+<li>欧拉法：更新历史值 <span class="math inline">\(j_L(k) = G_L u(k) + j_L(k - 1), \; j_C(k) = -G_C u(k)\)</span></li>
+</ul></li>
+<li>更新 <span class="math inline">\(j = \frac{G}{G_L}j_L + \frac{G}{G_C}j_C\)</span></li>
+</ol>
+<ul>
+<li>梯形法（没有一般性不用于计算）：<span class="math inline">\(\frac{G}{G_L} j_L(k - 1) - \frac{G}{G_C} j_C(k - 1)\)</span></li>
+<li>欧拉法（没有一般性不用于计算）：<span class="math inline">\(\frac{G}{G_L} j_L(k - 1)\)</span></li>
+</ul>
+<blockquote>
+<p>一直串联并联合并节点岂不是最终只有两个节点了。。。就变成了 Thevenin 等价定理了</p>
+</blockquote>
+<h2 id="rl-电路-和-rc-电路">RL 电路 和 RC 电路</h2>
+<p>考虑到电阻的特殊性，此类电路历史值可以直接更新而不依赖于原始的 <span class="math inline">\(j_L\)</span> 或 <span class="math inline">\(j_C\)</span> 的更新，又考虑到没有一般性，且并联不减少节点的个数，此处只给出<strong>串联</strong>的情况，思路都是一样的利用 <span class="math inline">\(u_L(k) = u(k) - \frac{i(k)}{G_R}\)</span> 或 <span class="math inline">\(u_R(k) = u(k) - \frac{i(k)}{G_R}\)</span></p>
+<p>从而</p>
+<table>
+
+<thead>
+<tr class="header">
+<th style="text-align: center;">类型</th>
+<th style="text-align: center;">梯形法</th>
+<th style="text-align: center;">欧拉法</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">RL</td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = (1 + k_{RL})G u(k) + k_{RL} j(k - 1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{G}{G_L} Gu(k) + \frac{G}{G_L} j(k - 1)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RC</td>
+<td style="text-align: center;"><span class="math inline">\(j(k) = -(1 + k_{RC}) G u(k) - k_{RC} j(k - 1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((\frac{G}{G_R} - 1) G u(k) + \frac{G}{G_R} j(k - 1)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>其中 <span class="math inline">\(k_{RL} = \frac{G}{G_L} - \frac{G}{G_R}, \quad k_{RC} = \frac{G}{G_C} - \frac{G}{G_R}\)</span>,</p>
+<h3 id="草稿">草稿</h3>
+<p><strong>梯形法</strong> <span class="math display">\[
+\begin{aligned}
+j(k) &amp;= \frac{G}{G_L} j_L(k) = G u_L(k) + \frac{G}{G_L} i(k) = G (u(k) - \frac{i(k)}{G_R}) + \frac{G}{G_L} i(k) \\
+&amp;= G u(k) + (\frac{G}{G_L} - \frac{G}{G_R}) i(k) =  (1 + \frac{G}{G_L} - \frac{G}{G_R}) G u(k) + (\frac{G}{G_L} - \frac{G}{G_R}) j(k - 1)
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+j(k) &amp;= \frac{G}{G_C} j_C(k) = -G u_C(k) - \frac{G}{G_C} i(k) = -G (u(k) - \frac{i(k)}{G_R}) - \frac{G}{G_C} i(k) \\
+&amp;= -G u(k) - (\frac{G}{G_C} - \frac{G}{G_R}) i(k) =  -(1 + \frac{G}{G_C} - \frac{G}{G_R}) G u(k) - (\frac{G}{G_C} - \frac{G}{G_R}) j(k - 1)
+\end{aligned}
+\]</span></p>
+<p><strong>欧拉法</strong></p>
+<p><span class="math display">\[
+j(k) = \frac{G}{G_L} j_L(k) = \frac{G}{G_L} i(k) = \frac{G}{G_L} Gu(k) + \frac{G}{G_L} j(k - 1)
+\]</span></p>
+<p><span class="math display">\[
+j(k) = \frac{G}{G_C} j_C(k) = - \frac{G}{G_C} G_C u_C(k) = -G(u(k) - \frac{i(k)}{G_R}) = (\frac{G}{G_R} - 1) G u(k) + \frac{G}{G_R} j(k - 1)
+\]</span></p>
+<blockquote>
+<p>可以验证 <span class="math inline">\(R \to 0\)</span> 时，对应 <span class="math inline">\(L, C\)</span> 刻画一致</p>
+</blockquote>
+<h2 id="单步法通用推广">单步法通用推广</h2>
+<blockquote>
+<p>应该写成更通用的方式：不在关心里面到底是个啥，推广成单步法求解，总有 <span class="math inline">\(i(k) = G u(k) + j(k - 1)\)</span>, 其中 <span class="math inline">\(j(k) = a G u(k) + b i(k)\)</span></p>
+</blockquote>
+<p>我们只需考虑两个组件的串联和并联情况即可，无论它是梯形法、欧拉法亦或是其它单步法，无论它是电阻、电感、电容、它们的并联串联混合都可以放在一起考虑。</p>
+<p>设有两个端口网络分别满足 <span class="math display">\[
+i_1(k) = G_1 u_1(k) + j_1(k - 1), \; j_1(k) = a_1 G_1 i_1(k)
+\]</span> 和 <span class="math display">\[
+i_2(k) = G_2 u_2(k) + j_2(k - 1), \; j_2(k) = a_2 G_2 i_2(k)
+\]</span></p>
+<p><strong>串联情况</strong>，即 <span class="math inline">\(i_1(k) \equiv i_2(k)\)</span></p>
+<p><span class="math display">\[
+u(k) = u_1(k) + u_2(k) = (\frac{1}{G_1} + \frac{1}{G_2}) i(k) - \frac{1}{G_1} j_1(k - 1) + \frac{1}{G_2} j_1(k - 1)
+\]</span></p>
+<p>即 <span class="math inline">\(G = \frac{1}{\frac{1}{G_1} + \frac{1}{G_2}}\)</span></p>
+<p><span class="math display">\[
+j(k) = \frac{G}{G_1}j_1(k) + \frac{G}{G_2} j_2(k) = G (a_1 u_1(k) + a_2 u_2(k)) + (\frac{G}{G_1} b_1 + \frac{G}{G_2} b_2) i(k)
+\]</span></p>
+<blockquote>
+<p>并不能写成原来的形式！失败！</p>
+</blockquote>
+<p>因此模块合并一般并不能改变 j 的更新的个数！老老实实按照 <span class="math inline">\(j = \frac{G}{G_1} j_1(k) + \frac{G}{G_2} j_2(k)\)</span> 来更新吧，或者叫分层更新法（更新构成有向图，可以拓扑排序后更新）。</p>
+<p><strong>并联情况</strong>，即 <span class="math inline">\(u_1(k) \equiv u_2(k)\)</span></p>
+<p><span class="math display">\[
+i(k) = i_1(k) + i_2(k) = (G_1 + G_2) u(k) + j_1(k - 1) + j_2(k - 1)
+\]</span></p>
+<p>即</p>
+<p><span class="math display">\[
+j(k) = j_1(k) + j_2(k) = (a_1 + a_2) G u(k) + (b_1 i_1(k) + b_2 i_2(k))
+\]</span></p>
+<p><span class="math inline">\(j\)</span> 的更新与串联方式一致</p>
+<blockquote>
+<p>转成 pdf：<code>pandoc RLC.md -s -o RLC.pdf --pdf-engine=xelatex -V mainfont="NotoSerifCJKsc-Regular"</code></p>
+</blockquote>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'cuzperf/cuzperf.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
